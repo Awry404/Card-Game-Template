@@ -9,16 +9,18 @@ public class Card : MonoBehaviour
     public Card_data data;
 
     public string card_name;
-    public string description;
-    public int health;
     public int cost;
-    public int damage;
+    public string oustatus;
+    public int ouamount;
+    public Die_data dice;
     public Sprite sprite;
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI descriptionText;
-    public TextMeshProUGUI healthText;
     public TextMeshProUGUI costText;
-    public TextMeshProUGUI damageText;
+    public TextMeshProUGUI statusText;
+
+    public TextMeshProUGUI diceText;
+
     public Image spriteImage;
         
 
@@ -26,16 +28,16 @@ public class Card : MonoBehaviour
     void Start()
     {
         card_name = data.card_name;
-        description = data.description;
-        health = data.health;
         cost = data.cost;
-        damage = data.damage;
         sprite = data.sprite;
+        dice = data.dice[0];
+        oustatus = data.oustatus;
+        ouamount = data.ouamount;
         nameText.text = card_name;
-        descriptionText.text = description;
-        healthText.text = health.ToString();
+        statusText.text = "inflict " + ouamount.ToString() + " " + oustatus;
+        //diceText.text = ouamount.ToString();
+        //healthText.text = health.ToString();
         costText.text = cost.ToString();
-        damageText.text = damage.ToString();
         spriteImage.sprite = sprite;
 
     }
