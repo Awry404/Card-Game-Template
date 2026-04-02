@@ -20,7 +20,7 @@ public class Card : MonoBehaviour
     public TextMeshProUGUI statusText;
 
     public TextMeshProUGUI diceText;
-
+    public string diceTextString = "";
     public Image spriteImage;
         
 
@@ -34,11 +34,50 @@ public class Card : MonoBehaviour
         oustatus = data.oustatus;
         ouamount = data.ouamount;
         nameText.text = card_name;
-        statusText.text = "inflict " + ouamount.ToString() + " " + oustatus;
+        if (oustatus != "none"){
+            if (oustatus == "burn")
+            {
+                statusText.text = "<color=orange>";
+            }
+            else if (oustatus == "bleed")
+            {                    
+                 statusText.text = "<color=red>";
+            }
+            else if (oustatus == "power down")
+            {                    
+                 statusText.text = "<color=blue>";
+            }
+            statusText.text += "inflict " + ouamount.ToString() + " " + oustatus;
+        }
         //diceText.text = ouamount.ToString();
         //healthText.text = health.ToString();
         costText.text = cost.ToString();
         spriteImage.sprite = sprite;
+
+        //list dice
+        foreach (Die_data die in data.dice)
+        {
+            diceTextString += "<color=white>" + die.type + " " + die.min.ToString() + "-" + die.max.ToString() + "\n";
+            if (die.status != "none")
+            {
+                //change color of status text based on type of status
+                if (die.status == "burn")
+                {                    diceTextString += "<color=orange>";
+                }
+                else if (die.status == "bleed")
+                {                    diceTextString += "<color=red>";
+                }
+                else if (die.status == "power down")
+                {                    
+                    diceTextString += "<color=blue>";
+                }
+
+                diceTextString += "inflict " + die.samount.ToString() + " " + die.status + "\n";
+                diceTextString += "<color=white>";
+                
+            }
+            diceText.text = diceTextString;
+        }
 
     }
 

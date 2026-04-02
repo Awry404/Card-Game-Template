@@ -15,7 +15,7 @@ MonoBehaviour:
   card_name: Focused Strikes
   cost: 2
   oustatus: bleed
-  ouamount: 1
+  ouamount: 2
   dice:
   - {fileID: 11400000, guid: 16bd6d4c4da954cfaa54e14a609b6132, type: 2}
   - {fileID: 11400000, guid: 2fabea407eea14f3aac665ec8b9d28e5, type: 2}
