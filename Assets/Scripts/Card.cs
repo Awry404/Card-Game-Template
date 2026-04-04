@@ -22,6 +22,8 @@ public class Card : MonoBehaviour
     public TextMeshProUGUI diceText;
     public string diceTextString = "";
     public Image spriteImage;
+    bool mouseover = false;
+
         
 
     // Start is called before the first frame update
@@ -85,5 +87,29 @@ public class Card : MonoBehaviour
     void Update()
     {
         
+    }
+
+     void OnMouseDown()
+    {
+        if (Input.GetMouseButtonDown(0) && mouseover)
+        {
+            //figure out how to target enemy die
+        }
+
+    }
+
+    void OnMouseOver()
+    {
+        //change color to red
+        GetComponent<SpriteRenderer>().color = Color.red;
+        mouseover = true;
+
+    }
+
+    void OnMouseExit()
+    {
+        //change color to white
+        GetComponent<SpriteRenderer>().color = Color.white;
+        mouseover = false;
     }
 }
