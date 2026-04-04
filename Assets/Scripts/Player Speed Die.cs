@@ -27,34 +27,26 @@ public class SpeedDie : MonoBehaviour
     void Update()
     {
 
-        //if (Input.GetMouseButtonDown(0))
-        //{
-        //    if (librarian != null)
-        //    {
-        //        //check if mouse is over this object
-        //        
-        //        librarian.OnDieClick();
-        //    }
-        //}
-    }
-
-    void OnMouseDown()
-    {
-        if (Input.GetMouseButtonDown(0) && mouseover)
+       if (Input.GetMouseButtonDown(0))
         {
-            if (librarian != null)
+            if (mouseover == true)
             {
-                librarian.OnDieClick();
+                if (librarian != null)
+                {
+                    librarian.KillCards();
+                    librarian.OnDieClick();
+                }
             }
         }
         else if (Input.GetMouseButtonDown(1))
         {
             if (librarian != null)
             {
-                //figure out how to remove the cards idk
+                librarian.KillCards();
             }
         }
     }
+
 
     void OnMouseOver()
     {

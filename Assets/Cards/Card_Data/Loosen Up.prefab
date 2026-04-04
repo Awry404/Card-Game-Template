@@ -497,7 +497,7 @@ GameObject:
   - component: {fileID: 1126644538999475434}
   - component: {fileID: -2245179390171894727}
   m_Layer: 0
-  m_Name: Focused Strikes
+  m_Name: Loosen Up
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -536,10 +536,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fa534983bed543169ce438dfad802a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 33e2634b0f2e841eabb970bbf404ddca, type: 2}
+  data: {fileID: 11400000, guid: f323f3f1c173c0c45b9ff00e963d9ac7, type: 2}
   card_name: 
   cost: 0
-  oustatus: burn
+  oustatus: none
   ouamount: 0
   dice: {fileID: 0}
   sprite: {fileID: 0}
@@ -551,7 +551,7 @@ MonoBehaviour:
   diceTextString: 
   spriteImage: {fileID: 4777937877724538930}
   BackgroundImage: {fileID: 0}
-  Rarity: {r: 0.27754536, g: 0.5943396, b: 0.3054791, a: 1}
+  Rarity: {r: 0.15490389, g: 0.5566038, b: 0.5485715, a: 1}
 --- !u!50 &-2245179390171894727
 Rigidbody2D:
   serializedVersion: 5

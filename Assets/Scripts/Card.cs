@@ -22,13 +22,16 @@ public class Card : MonoBehaviour
     public TextMeshProUGUI diceText;
     public string diceTextString = "";
     public Image spriteImage;
-    bool mouseover = false;
+    public Image BackgroundImage;
+    public Color Rarity = Color.white;
+    //bool mouseover = false;
 
         
 
     // Start is called before the first frame update
     void Start()
     {
+        BackgroundImage = GetComponentInChildren<Image>();
         card_name = data.card_name;
         cost = data.cost;
         sprite = data.sprite;
@@ -36,6 +39,7 @@ public class Card : MonoBehaviour
         oustatus = data.oustatus;
         ouamount = data.ouamount;
         nameText.text = card_name;
+        BackgroundImage.color = Rarity; // Set default background color
         if (oustatus != "none"){
             if (oustatus == "burn")
             {
@@ -43,11 +47,11 @@ public class Card : MonoBehaviour
             }
             else if (oustatus == "bleed")
             {                    
-                 statusText.text = "<color=red>";
+                statusText.text = "<color=red>";
             }
             else if (oustatus == "power down")
             {                    
-                 statusText.text = "<color=blue>";
+                statusText.text = "<color=blue>";
             }
             statusText.text += "inflict " + ouamount.ToString() + " " + oustatus;
         }
@@ -64,17 +68,27 @@ public class Card : MonoBehaviour
             {
                 //change color of status text based on type of status
                 if (die.status == "burn")
-                {                    diceTextString += "<color=orange>";
+                {                    
+                    diceTextString += "<color=orange>";
+                    diceTextString += "Inflict " + die.samount.ToString() + " " + die.status + "\n";
                 }
                 else if (die.status == "bleed")
-                {                    diceTextString += "<color=red>";
+                {                    
+                    diceTextString += "<color=red>";
+                    diceTextString += "Inflict " + die.samount.ToString() + " " + die.status + "\n";
                 }
                 else if (die.status == "power down")
                 {                    
                     diceTextString += "<color=blue>";
+                    diceTextString += "Inflict " + die.samount.ToString() + " " + die.status + "\n";
+                }
+                else if (die.status == "Recover_light")
+                {
+                    diceTextString += "<color=yellow>";
+                    diceTextString += "Recover " + die.samount.ToString() + " " + "Cost" + "\n";
                 }
 
-                diceTextString += "inflict " + die.samount.ToString() + " " + die.status + "\n";
+                //diceTextString += "inflict " + die.samount.ToString() + " " + die.status + "\n";
                 diceTextString += "<color=white>";
                 
             }
@@ -89,27 +103,41 @@ public class Card : MonoBehaviour
         
     }
 
-     void OnMouseDown()
+    public void HighlightCard()
     {
-        if (Input.GetMouseButtonDown(0) && mouseover)
+        if (BackgroundImage != null)
         {
-            //figure out how to target enemy die
+            BackgroundImage.color += new Color(0.2f, 0.2f, 0.2f); // Slightly brighten the card
+            transform.SetAsLastSibling(); // Bring to top layer
+            //transform.localScale = Vector3.one * 1.1f; // Slightly enlarge the card
+            transform.position += new Vector3(0, 50, 0); // Move up slightly
+            Debug.Log("Highlighted card: " + card_name);
         }
-
+        else
+        {
+            Debug.LogError("BackgroundImage is not assigned on card: " + card_name);
+        }
     }
 
-    void OnMouseOver()
+    public void UnhighlightCard()
     {
-        //change color to red
-        GetComponent<SpriteRenderer>().color = Color.red;
-        mouseover = true;
-
+        if (BackgroundImage != null)
+        {
+            BackgroundImage.color = Rarity; // Reset to default color
+            //transform.localScale = Vector3.one; // Reset scale
+            transform.position += new Vector3(0, -50, 0); 
+            Debug.Log("Unhighlighted card: " + card_name);
+        }
+        else
+        {
+            Debug.LogError("BackgroundImage is not assigned on card: " + card_name);
+        }
     }
 
-    void OnMouseExit()
+    public void OnCardClicked()
     {
-        //change color to white
-        GetComponent<SpriteRenderer>().color = Color.white;
-        mouseover = false;
+        // Logic to target enemy die - implement this based on your game mechanics
+        Debug.Log("Card clicked: " + card_name);
+        // For example: Find enemy die and apply effect
     }
 }

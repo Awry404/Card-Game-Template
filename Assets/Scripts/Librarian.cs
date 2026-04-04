@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -12,6 +13,8 @@ public class Librarian : MonoBehaviour
 
     public List<Card> hand = new List<Card>();
     public string name = "Librarian";
+    public List<SpeedDie> dice = new List<SpeedDie>();
+    public List<GameObject> cardObjects = new List<GameObject>();
     
     public GameObject canvas;
 
@@ -25,7 +28,10 @@ public class Librarian : MonoBehaviour
         {
             deck = new List<Card>(truedeck);
         }
+        ShuffleDeck();
         draw(4);
+        
+        dice = new List<SpeedDie>(GetComponentsInChildren<SpeedDie>());
     }
 
     // Update is called once per frame
@@ -66,9 +72,33 @@ public class Librarian : MonoBehaviour
         {
             Debug.Log("Card " + i + ": " + hand[i].name);
             Card card = Instantiate(hand[i], canvas.transform);
-            card.transform.position = new Vector3(i * 50.0f, -25, 0); // Position cards in a row
+            cardObjects.Add(card.gameObject);
+            card.transform.position = new Vector3(i * 100.0f, -25, 0); // Position cards in a row
         }
 
+    }
+
+    public void KillCards()
+    {
+        //show available cards in hand
+       for (int i = cardObjects.Count-1; i >= 0; i--)
+        {
+            Debug.Log("Killed Card " + i + ": " + hand[i].name);
+            Destroy(cardObjects[i]);
+        }
+        cardObjects.Clear();
+
+    }
+
+    public void ShuffleDeck()
+    {
+        for (int i = 0; i < deck.Count; i++)
+        {
+            Card temp = deck[i];
+            int randomIndex = Random.Range(i, deck.Count);
+            deck[i] = deck[randomIndex];
+            deck[randomIndex] = temp;
+        }
     }
 }
 
