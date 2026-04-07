@@ -14,6 +14,9 @@ public class GameManager : MonoBehaviour
     public List<Card> ai_hand = new List<Card>();
     public List<Card> discard_pile = new List<Card>();
     public int initial_hand_size = 4;
+    public SpeedDie selected_die;
+    public EnemySpeedDie selected_enemy_die;
+    public Card selected_card;
 
     private void Awake()
     {

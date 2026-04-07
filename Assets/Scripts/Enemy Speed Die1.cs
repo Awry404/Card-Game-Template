@@ -3,23 +3,24 @@ using System.Collections.Generic;
 using UnityEngine.EventSystems;
 
 
-public class SpeedDie : MonoBehaviour
+public class EnemySpeedDie : MonoBehaviour
 {
-    private Librarian librarian;
+    private Enemy parent;
     public int value = 0;
     bool mouseover = false;
+    public Librarian clash_target;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
     //find parent librarian and call OnDieClick
-        librarian = GetComponentInParent<Librarian>();
-        if (librarian != null)
+        parent = GetComponentInParent<Enemy>();
+        if (parent != null)
         {
-            Debug.Log("librarian found: " + librarian.name);
+            Debug.Log("parent found: " + parent.name);
         }
         else
         {
-            Debug.LogError("No parent librarian found!");
+            Debug.LogError("No parent found!");
         }    
     }
 
@@ -31,25 +32,29 @@ public class SpeedDie : MonoBehaviour
         {
             if (mouseover == true)
             {
-                if (librarian != null)
+                if (parent != null)
                 {
-                    librarian.KillCards();
-                    librarian.OnDieClick();
-                    GameManager.gm.selected_die = this;
+                    //parent.KillCards();
+                    //parent.OnDieClick();
+                    //GameManager.gm.selected_enemy_die = this;
+                    if (GameManager.gm.selected_card != null)
+                    {
+                        //set clash target in enemy and player; figure out how to do combat start ig
+                    }
                 }
             }
         }
         else if (Input.GetMouseButtonDown(1))
         {
-            if (librarian != null)
+            if (parent != null)
             {
-                librarian.KillCards();
-                GameManager.gm.selected_die = null;
+                parent.KillCards();
+                GameManager.gm.selected_enemy_die = null;
             }
         }
-        if (GameManager.gm.selected_die != this)
+        if (GameManager.gm.selected_enemy_die != this)
         {
-            librarian.KillCards();
+            parent.KillCards();
         }
     }
 

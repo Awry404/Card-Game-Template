@@ -6,14 +6,14 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Librarian : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
     //public static Librarian librarian;
     public List<Card> deck = new List<Card>();
     public List<Card> truedeck = new List<Card>();
 
     public List<Card> hand = new List<Card>();
-    public string name = "Librarian";
+    public string name = "Enemy";
     public List<SpeedDie> dice = new List<SpeedDie>();
     public List<GameObject> cardObjects = new List<GameObject>();
     
@@ -72,14 +72,14 @@ public class Librarian : MonoBehaviour
     {
         Coffset = hand.Count/2 * new Vector3(100.0f, 0, 0);
         //show available cards in hand
-       for (int i = 0; i < hand.Count; i++)
-        {
-            Debug.Log("Card " + i + ": " + hand[i].name);
-            Card card = Instantiate(hand[i], canvas.transform);
-            card.parent = this;
-            cardObjects.Add(card.gameObject);
-            card.transform.position = new Vector3(i * 100.0f, -25, 0) - Coffset; // Position cards in a row
-        }
+       //for (int i = 0; i < hand.Count; i++)
+       //{
+       //    Debug.Log("Card " + i + ": " + hand[i].name);
+       //    Card card = Instantiate(hand[i], canvas.transform);
+       //    card.parent = this;
+       //    cardObjects.Add(card.gameObject);
+       //    card.transform.position = new Vector3(i * 100.0f, -25, 0) - Coffset; // Position cards in a row
+       //}
 
     }
 

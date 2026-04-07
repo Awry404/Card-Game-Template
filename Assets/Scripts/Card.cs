@@ -24,6 +24,7 @@ public class Card : MonoBehaviour
     public Image spriteImage;
     public Image BackgroundImage;
     public Color Rarity = Color.white;
+    public Librarian parent;
     //bool mouseover = false;
 
         
@@ -100,7 +101,11 @@ public class Card : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (parent.clicked_card == this)
+        {
+            // Logic to target enemy die - implement this based on your game mechanics
+            Debug.Log("Card is currently selected: " + card_name);
+        }
     }
 
     public void HighlightCard()
@@ -136,8 +141,11 @@ public class Card : MonoBehaviour
 
     public void OnCardClicked()
     {
+        parent.clicked_card = this;
+        GameManager.gm.selected_card = this;
         // Logic to target enemy die - implement this based on your game mechanics
         Debug.Log("Card clicked: " + card_name);
         // For example: Find enemy die and apply effect
+
     }
 }
