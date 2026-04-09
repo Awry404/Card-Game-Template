@@ -25,6 +25,7 @@ public class Card : MonoBehaviour
     public Image BackgroundImage;
     public Color Rarity = Color.white;
     public Librarian parent;
+    public int locationinhand;
     //bool mouseover = false;
 
         

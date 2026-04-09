@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public SpeedDie selected_die;
     public EnemySpeedDie selected_enemy_die;
     public Card selected_card;
+    public List<Card> card_database = new List<Card>();
 
     private void Awake()
     {

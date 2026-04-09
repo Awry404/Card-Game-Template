@@ -8,7 +8,8 @@ public class EnemySpeedDie : MonoBehaviour
     private Enemy parent;
     public int value = 0;
     bool mouseover = false;
-    public Librarian clash_target;
+    public SpeedDie clash_target;
+    public Card selected_card;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -34,12 +35,23 @@ public class EnemySpeedDie : MonoBehaviour
             {
                 if (parent != null)
                 {
-                    //parent.KillCards();
-                    //parent.OnDieClick();
-                    //GameManager.gm.selected_enemy_die = this;
+                    //this might have an error in the future where clash targets are a script and not object. idk if
+                    GameManager.gm.selected_enemy_die = this;
                     if (GameManager.gm.selected_card != null)
                     {
-                        //set clash target in enemy and player; figure out how to do combat start ig
+                        
+                        //assign clashes
+                        SpeedDie temp = GameManager.gm.selected_die;
+                        clash_target = temp;
+                        Card card = GameManager.gm.selected_card;
+                        GameManager.gm.card_database.Add(temp.librarian.hand[card.locationinhand]);
+                        
+                        temp.clash_target = this;
+                        //set selected card for player
+                        temp.selected_card = GameManager.gm.card_database[GameManager.gm.card_database.Count - 1];
+                        temp.librarian.discard(card);
+                        GameManager.gm.selected_card = null;
+                        
                     }
                 }
             }

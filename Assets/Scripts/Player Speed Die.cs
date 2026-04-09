@@ -5,9 +5,11 @@ using UnityEngine.EventSystems;
 
 public class SpeedDie : MonoBehaviour
 {
-    private Librarian librarian;
+    public Librarian librarian;
     public int value = 0;
     bool mouseover = false;
+    public EnemySpeedDie clash_target;
+    public Card selected_card;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

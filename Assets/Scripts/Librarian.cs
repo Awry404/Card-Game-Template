@@ -68,6 +68,16 @@ public class Librarian : MonoBehaviour
         }
     }
 
+    public void discard(Card card)
+    {
+        hand.RemoveAt(card.locationinhand);
+        cardObjects.Remove(card.gameObject);
+        Destroy(card.gameObject);
+        KillCards();
+        OnDieClick();
+        
+    }
+
     public void OnDieClick()
     {
         Coffset = hand.Count/2 * new Vector3(100.0f, 0, 0);
@@ -77,6 +87,7 @@ public class Librarian : MonoBehaviour
             Debug.Log("Card " + i + ": " + hand[i].name);
             Card card = Instantiate(hand[i], canvas.transform);
             card.parent = this;
+            card.locationinhand = i;
             cardObjects.Add(card.gameObject);
             card.transform.position = new Vector3(i * 100.0f, -25, 0) - Coffset; // Position cards in a row
         }
