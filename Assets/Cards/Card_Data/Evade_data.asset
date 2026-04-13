@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c025b4487bfbb41fca186c7d9d6e18a5, type: 3}
-  m_Name: Loosen_up_data
+  m_Name: Evade_data
   m_EditorClassIdentifier: 
-  card_name: Loosen Up
-  cost: 0
+  card_name: Evade
+  cost: 1
   oustatus: none
   ouamount: 0
   dice:
-  - {fileID: 11400000, guid: 7e2fd8a3d758ede44badf9fdf48d8184, type: 2}
-  sprite: {fileID: -7098546421446872433, guid: ac456149a796e4178aa9a433aa425aad, type: 3}
+  - {fileID: 11400000, guid: 811f93c3e91ad40039795ee2fa4cfbf1, type: 2}
+  sprite: {fileID: 6029615526225846900, guid: cee24ddc639e341aca8592d3436ff5a4, type: 3}

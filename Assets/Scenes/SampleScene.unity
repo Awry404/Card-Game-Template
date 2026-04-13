@@ -179,15 +179,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Librarian
   deck: []
   truedeck:
-  - {fileID: 1126644538999475434, guid: 4f04e097f7b5e479e9853fd953e91201, type: 3}
-  - {fileID: 1126644538999475434, guid: 4f04e097f7b5e479e9853fd953e91201, type: 3}
-  - {fileID: 1126644538999475434, guid: 4f04e097f7b5e479e9853fd953e91201, type: 3}
-  - {fileID: 1126644538999475434, guid: 4f04e097f7b5e479e9853fd953e91201, type: 3}
-  - {fileID: 1126644538999475434, guid: 4f04e097f7b5e479e9853fd953e91201, type: 3}
   - {fileID: 1126644538999475434, guid: 226bfbe3db7321a4090df9999c78917a, type: 3}
   - {fileID: 1126644538999475434, guid: 226bfbe3db7321a4090df9999c78917a, type: 3}
-  - {fileID: 1126644538999475434, guid: 226bfbe3db7321a4090df9999c78917a, type: 3}
-  - {fileID: 1126644538999475434, guid: 226bfbe3db7321a4090df9999c78917a, type: 3}
+  - {fileID: 1126644538999475434, guid: 34cfa87617ca246dfa68895e247fa7fe, type: 3}
+  - {fileID: 1126644538999475434, guid: 34cfa87617ca246dfa68895e247fa7fe, type: 3}
+  - {fileID: 1126644538999475434, guid: 963a7ae70cb064f50a264db1757b1871, type: 3}
+  - {fileID: 1126644538999475434, guid: 963a7ae70cb064f50a264db1757b1871, type: 3}
+  - {fileID: 1126644538999475434, guid: 4f04e097f7b5e479e9853fd953e91201, type: 3}
+  - {fileID: 1126644538999475434, guid: 4f04e097f7b5e479e9853fd953e91201, type: 3}
+  - {fileID: 1126644538999475434, guid: 4f04e097f7b5e479e9853fd953e91201, type: 3}
   hand: []
   name: Librarian
   dice: []
@@ -512,7 +512,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 970a9a50f7334854cb147dbfe5507fde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpeedDie
+  librarian: {fileID: 0}
   value: 0
+  clash_target: {fileID: 0}
+  selected_card: {fileID: 0}
 --- !u!50 &370825421
 Rigidbody2D:
   serializedVersion: 5
@@ -732,6 +735,8 @@ MonoBehaviour:
   initial_hand_size: 4
   selected_die: {fileID: 0}
   selected_enemy_die: {fileID: 0}
+  selected_card: {fileID: 0}
+  card_database: []
 --- !u!4 &622756966
 Transform:
   m_ObjectHideFlags: 0
@@ -807,15 +812,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Librarian
   deck: []
   truedeck:
-  - {fileID: 1126644538999475434, guid: 4f04e097f7b5e479e9853fd953e91201, type: 3}
-  - {fileID: 1126644538999475434, guid: 4f04e097f7b5e479e9853fd953e91201, type: 3}
-  - {fileID: 1126644538999475434, guid: 4f04e097f7b5e479e9853fd953e91201, type: 3}
-  - {fileID: 1126644538999475434, guid: 4f04e097f7b5e479e9853fd953e91201, type: 3}
-  - {fileID: 1126644538999475434, guid: 4f04e097f7b5e479e9853fd953e91201, type: 3}
   - {fileID: 1126644538999475434, guid: 226bfbe3db7321a4090df9999c78917a, type: 3}
   - {fileID: 1126644538999475434, guid: 226bfbe3db7321a4090df9999c78917a, type: 3}
-  - {fileID: 1126644538999475434, guid: 226bfbe3db7321a4090df9999c78917a, type: 3}
-  - {fileID: 1126644538999475434, guid: 226bfbe3db7321a4090df9999c78917a, type: 3}
+  - {fileID: 1126644538999475434, guid: 34cfa87617ca246dfa68895e247fa7fe, type: 3}
+  - {fileID: 1126644538999475434, guid: 34cfa87617ca246dfa68895e247fa7fe, type: 3}
+  - {fileID: 1126644538999475434, guid: 963a7ae70cb064f50a264db1757b1871, type: 3}
+  - {fileID: 1126644538999475434, guid: 963a7ae70cb064f50a264db1757b1871, type: 3}
+  - {fileID: 1126644538999475434, guid: 4f04e097f7b5e479e9853fd953e91201, type: 3}
+  - {fileID: 1126644538999475434, guid: 4f04e097f7b5e479e9853fd953e91201, type: 3}
+  - {fileID: 1126644538999475434, guid: 4f04e097f7b5e479e9853fd953e91201, type: 3}
   hand: []
   name: Librarian
   dice: []
@@ -1085,6 +1090,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpeedDie
   value: 0
+  clash_target: {fileID: 0}
+  selected_card: {fileID: 0}
 --- !u!1 &1284887783
 GameObject:
   m_ObjectHideFlags: 0
@@ -1186,15 +1193,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Librarian
   deck: []
   truedeck:
-  - {fileID: 1126644538999475434, guid: 4f04e097f7b5e479e9853fd953e91201, type: 3}
-  - {fileID: 1126644538999475434, guid: 4f04e097f7b5e479e9853fd953e91201, type: 3}
-  - {fileID: 1126644538999475434, guid: 4f04e097f7b5e479e9853fd953e91201, type: 3}
-  - {fileID: 1126644538999475434, guid: 4f04e097f7b5e479e9853fd953e91201, type: 3}
-  - {fileID: 1126644538999475434, guid: 4f04e097f7b5e479e9853fd953e91201, type: 3}
   - {fileID: 1126644538999475434, guid: 226bfbe3db7321a4090df9999c78917a, type: 3}
   - {fileID: 1126644538999475434, guid: 226bfbe3db7321a4090df9999c78917a, type: 3}
-  - {fileID: 1126644538999475434, guid: 226bfbe3db7321a4090df9999c78917a, type: 3}
-  - {fileID: 1126644538999475434, guid: 226bfbe3db7321a4090df9999c78917a, type: 3}
+  - {fileID: 1126644538999475434, guid: 34cfa87617ca246dfa68895e247fa7fe, type: 3}
+  - {fileID: 1126644538999475434, guid: 34cfa87617ca246dfa68895e247fa7fe, type: 3}
+  - {fileID: 1126644538999475434, guid: 963a7ae70cb064f50a264db1757b1871, type: 3}
+  - {fileID: 1126644538999475434, guid: 963a7ae70cb064f50a264db1757b1871, type: 3}
+  - {fileID: 1126644538999475434, guid: 4f04e097f7b5e479e9853fd953e91201, type: 3}
+  - {fileID: 1126644538999475434, guid: 4f04e097f7b5e479e9853fd953e91201, type: 3}
+  - {fileID: 1126644538999475434, guid: 4f04e097f7b5e479e9853fd953e91201, type: 3}
   hand: []
   name: Librarian
   dice: []
@@ -1404,7 +1411,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 970a9a50f7334854cb147dbfe5507fde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpeedDie
+  librarian: {fileID: 0}
   value: 0
+  clash_target: {fileID: 0}
+  selected_card: {fileID: 0}
 --- !u!50 &1837827470
 Rigidbody2D:
   serializedVersion: 5
@@ -1624,7 +1634,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 970a9a50f7334854cb147dbfe5507fde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpeedDie
+  librarian: {fileID: 0}
   value: 0
+  clash_target: {fileID: 0}
+  selected_card: {fileID: 0}
 --- !u!60 &1938774055
 PolygonCollider2D:
   m_ObjectHideFlags: 0

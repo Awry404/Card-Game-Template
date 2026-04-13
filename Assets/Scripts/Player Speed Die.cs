@@ -29,6 +29,15 @@ public class SpeedDie : MonoBehaviour
     void Update()
     {
 
+        if (selected_card != null)
+        {
+            GetComponent<SpriteRenderer>().color = Color.yellow;
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().color = Color.white;
+        }
+
        if (Input.GetMouseButtonDown(0))
         {
             if (mouseover == true)
@@ -45,8 +54,25 @@ public class SpeedDie : MonoBehaviour
         {
             if (librarian != null)
             {
-                librarian.KillCards();
-                GameManager.gm.selected_die = null;
+                if (mouseover == true)
+                {
+                    if (selected_card != null)
+                    {
+                    librarian.hand.Add(selected_card);
+                    GameManager.gm.card_database.RemoveAt(selected_card.locationinhand);
+                    GameManager.gm.CountCards();
+                    selected_card = null;
+                    if (clash_target.clash_target == this)
+                    {
+                        clash_target.clash_target = null;
+                    }
+                    clash_target = null;
+                    }
+                }
+                else{
+                    librarian.KillCards();
+                    GameManager.gm.selected_die = null;
+                }
             }
         }
         if (GameManager.gm.selected_die != this)

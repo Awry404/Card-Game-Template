@@ -45,6 +45,8 @@ public class EnemySpeedDie : MonoBehaviour
                         clash_target = temp;
                         Card card = GameManager.gm.selected_card;
                         GameManager.gm.card_database.Add(temp.librarian.hand[card.locationinhand]);
+                        Debug.Log("added card to database: " + GameManager.gm.card_database.Count);
+                        GameManager.gm.CountCards();
                         
                         temp.clash_target = this;
                         //set selected card for player

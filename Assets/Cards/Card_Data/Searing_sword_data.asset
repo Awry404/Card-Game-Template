@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c025b4487bfbb41fca186c7d9d6e18a5, type: 3}
+  m_Name: Searing_sword_data
+  m_EditorClassIdentifier: 
+  card_name: Searing Sword
+  cost: 2
+  oustatus: burn
+  ouamount: 1
+  dice:
+  - {fileID: 11400000, guid: dea1cade5ba4a45cbb44c55ee814f8dd, type: 2}
+  - {fileID: 11400000, guid: 3db618b28181d427fa1186229e436873, type: 2}
+  - {fileID: 11400000, guid: 3db618b28181d427fa1186229e436873, type: 2}
+  sprite: {fileID: 6881425771003021446, guid: 936259e26dd924ebfa7f69ea29b13409, type: 3}

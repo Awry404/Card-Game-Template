@@ -65,6 +65,17 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void CountCards()
+    {
+        Debug.Log("counted cards");
+        for (int i = 0; i < card_database.Count; i++)
+        {
+           card_database[i].locationinhand = i;
+        }
+        
+    }
+    
+
 
 
     

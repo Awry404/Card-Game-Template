@@ -57,6 +57,10 @@ public class Card : MonoBehaviour
             }
             statusText.text += "inflict " + ouamount.ToString() + " " + oustatus;
         }
+        else
+        {
+            statusText.text = "";
+        }
         //diceText.text = ouamount.ToString();
         //healthText.text = health.ToString();
         costText.text = cost.ToString();
