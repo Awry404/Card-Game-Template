@@ -62,10 +62,6 @@ public class SpeedDie : MonoBehaviour
                     GameManager.gm.card_database.RemoveAt(selected_card.locationinhand);
                     GameManager.gm.CountCards();
                     selected_card = null;
-                    if (clash_target.clash_target == this)
-                    {
-                        clash_target.clash_target = null;
-                    }
                     clash_target = null;
                     }
                 }

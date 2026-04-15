@@ -10,9 +10,12 @@ public class EnemySpeedDie : MonoBehaviour
     bool mouseover = false;
     public SpeedDie clash_target;
     public Card selected_card;
+    public GameObject canvas;
+    public List<GameObject> cardObjects = new List<GameObject>();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        canvas = GameObject.Find("Canvas");
     //find parent librarian and call OnDieClick
         parent = GetComponentInParent<Enemy>();
         if (parent != null)
@@ -42,7 +45,7 @@ public class EnemySpeedDie : MonoBehaviour
                         
                         //assign clashes
                         SpeedDie temp = GameManager.gm.selected_die;
-                        clash_target = temp;
+                        //clash_target = temp;
                         Card card = GameManager.gm.selected_card;
                         GameManager.gm.card_database.Add(temp.librarian.hand[card.locationinhand]);
                         Debug.Log("added card to database: " + GameManager.gm.card_database.Count);
@@ -54,6 +57,11 @@ public class EnemySpeedDie : MonoBehaviour
                         temp.librarian.discard(card);
                         GameManager.gm.selected_card = null;
                         
+                    }
+                    else
+                    {
+                        
+                        parent.OnDieClick(selected_card);
                     }
                 }
             }

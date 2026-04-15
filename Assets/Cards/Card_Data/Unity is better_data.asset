@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c025b4487bfbb41fca186c7d9d6e18a5, type: 3}
+  m_Name: Unity is better_data
+  m_EditorClassIdentifier: 
+  card_name: Unity is better
+  cost: 1
+  oustatus: none
+  ouamount: 0
+  dice:
+  - {fileID: 11400000, guid: 526bf8ddc32094b9cbd410c2cfa524f9, type: 2}
+  - {fileID: 11400000, guid: 811f93c3e91ad40039795ee2fa4cfbf1, type: 2}
+  sprite: {fileID: -5016031953357476903, guid: f0b264ed91f6e4b53b64b733ea0e7d00, type: 3}

@@ -43,10 +43,13 @@ public class CardBody : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             Debug.LogError("Pointer enter but parent is null on CardBody: " + gameObject.name);
             return;
         }
-
-        Debug.Log("Pointer enter CardBody for card: " + parent.card_name);
-        parent.HighlightCard(); // Call the highlight method on the parent
-        mouseover = true;
+        else if (parent.enemy_parent == null)
+        {
+        
+            Debug.Log("Pointer enter CardBody for card: " + parent.card_name);
+            parent.HighlightCard(); // Call the highlight method on the parent
+            mouseover = true;
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -54,7 +57,11 @@ public class CardBody : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         if (parent == null)
             return;
 
-        parent.UnhighlightCard(); // Call the unhighlight method on the parent
-        mouseover = false;
+        else if (parent.enemy_parent == null)
+        {
+            Debug.Log("Pointer exit CardBody for card: " + parent.card_name);
+            parent.UnhighlightCard(); // Call the unhighlight method on the parent
+            mouseover = false;
+        }
     }
 }

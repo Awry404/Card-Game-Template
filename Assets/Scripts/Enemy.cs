@@ -14,12 +14,14 @@ public class Enemy : MonoBehaviour
 
     public List<Card> hand = new List<Card>();
     public string name = "Enemy";
-    public List<SpeedDie> dice = new List<SpeedDie>();
+    public List<EnemySpeedDie> dice = new List<EnemySpeedDie>();
     public List<GameObject> cardObjects = new List<GameObject>();
     
     public GameObject canvas;
     public Vector3 Coffset;
     public Card clicked_card;
+    public List<SpeedDie> player_dice = new List<SpeedDie>();
+    public int index = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -34,7 +36,20 @@ public class Enemy : MonoBehaviour
         ShuffleDeck();
         draw(4);
         
-        dice = new List<SpeedDie>(GetComponentsInChildren<SpeedDie>());
+        dice = new List<EnemySpeedDie>(GetComponentsInChildren<EnemySpeedDie>());
+        for (int i = 0; i < dice.Count; i++)
+        {
+            dice[i].selected_card = hand[1];
+            hand.RemoveAt(1);
+            //find all player dice
+            player_dice = new List<SpeedDie>(FindObjectsByType<SpeedDie>());
+            index = Random.Range(0, player_dice.Count-1);
+            dice[i].clash_target = player_dice[index];
+        }
+        
+        
+        
+        
     }
 
     // Update is called once per frame
@@ -68,18 +83,13 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void OnDieClick()
+    public void OnDieClick(Card selected_card)
     {
         Coffset = hand.Count/2 * new Vector3(100.0f, 0, 0);
-        //show available cards in hand
-       //for (int i = 0; i < hand.Count; i++)
-       //{
-       //    Debug.Log("Card " + i + ": " + hand[i].name);
-       //    Card card = Instantiate(hand[i], canvas.transform);
-       //    card.parent = this;
-       //    cardObjects.Add(card.gameObject);
-       //    card.transform.position = new Vector3(i * 100.0f, -25, 0) - Coffset; // Position cards in a row
-       //}
+        Card card = Instantiate(selected_card, canvas.transform);
+        card.enemy_parent = this;
+        cardObjects.Add(card.gameObject);
+        card.transform.position = new Vector3(-450, 600, 0);
 
     }
 

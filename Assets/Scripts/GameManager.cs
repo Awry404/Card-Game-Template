@@ -74,6 +74,11 @@ public class GameManager : MonoBehaviour
         }
         
     }
+
+    public void Clash()
+    {
+        //figure
+    }
     
 
 
