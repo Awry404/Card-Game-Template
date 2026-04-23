@@ -85,6 +85,7 @@ public class Enemy : MonoBehaviour
 
     public void OnDieClick(Card selected_card)
     {
+        KillCards();
         Coffset = hand.Count/2 * new Vector3(100.0f, 0, 0);
         Card card = Instantiate(selected_card, canvas.transform);
         card.enemy_parent = this;

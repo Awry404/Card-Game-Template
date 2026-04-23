@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -18,6 +19,9 @@ public class GameManager : MonoBehaviour
     public EnemySpeedDie selected_enemy_die;
     public Card selected_card;
     public List<Card> card_database = new List<Card>();
+    public List<Enemy> enemies = new List<Enemy>();
+    public List<Librarian> librarians = new List<Librarian>();
+    public List<GameObject> clashers = new List<GameObject>();
 
     private void Awake()
     {
@@ -34,7 +38,9 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //find all enemies on screen
+        enemies = new List<Enemy>(FindObjectsByType<Enemy>());
+        librarians = new List<Librarian>(FindObjectsByType<Librarian>());
     }
 
     // Update is called once per frame
@@ -78,6 +84,38 @@ public class GameManager : MonoBehaviour
     public void Clash()
     {
         //figure
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            for (int j = 0; i < enemies[i].dice.Count; i++)
+            {
+                if (enemies[i].dice[j].clash_target != null)
+                {
+                    clashers.Add(enemies[i].dice[j].gameObject);
+                }
+            }
+        }
+
+        for (int i = 0; i < librarians.Count; i++)
+        {
+            for (int j = 0; i < librarians[i].dice.Count; i++)
+            {
+                if (librarians[i].dice[j].clash_target != null)
+                {
+                    clashers.Add(librarians[i].dice[j].gameObject);
+                }
+            }
+        }
+        
+        for (int i = 0; i < clashers.Count; i++)
+        {
+            if (clashers[i].transform.position - clashers[i].GetComponent(SpeedDie).clash_target.transform.position)
+            {
+                
+            }
+        }
+        
+        
+
     }
     
 
