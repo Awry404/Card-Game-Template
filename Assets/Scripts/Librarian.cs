@@ -20,6 +20,8 @@ public class Librarian : MonoBehaviour
     public GameObject canvas;
     public Vector3 Coffset;
     public Card clicked_card;
+    public int health = 20;
+    public int stagger = 10;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

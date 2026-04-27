@@ -13,27 +13,34 @@ public class StartButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    public void OnPointerDown(PointerEventData eventData)
-    {
-    
-        if (mouseover)
+        if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("started clash");
-            GameManager.gm.Clash();
+            if (mouseover == true)
+            {
+                Debug.Log("started clash");
+                GameManager.gm.Clash();
+            }
         }
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
+    //public void OnPointerDown(PointerEventData eventData)
+    //{
+    //
+    //    if (mouseover == true)
+    //    {
+    //        Debug.Log("started clash");
+    //        GameManager.gm.Clash();
+    //    }
+    //}
+
+    public void OnMouseOver()
     {
         
 
         mouseover = true;
     }
 
-    public void OnPointerExit(PointerEventData eventData)
+    public void OnMouseExit()
     {
         mouseover = false;
     }

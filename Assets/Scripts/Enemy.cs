@@ -22,6 +22,8 @@ public class Enemy : MonoBehaviour
     public Card clicked_card;
     public List<SpeedDie> player_dice = new List<SpeedDie>();
     public int index = 0;
+    public int health = 20;
+    public int stagger = 10;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
