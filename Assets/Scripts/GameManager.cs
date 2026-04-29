@@ -112,65 +112,89 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < clashers.Count; i++)
         {
             //move clasher towrads it's target
-            float range = 0.5f; // Adjust this value as needed
-            if (Vector3.Distance(clashers[i].transform.position, clashers[i].GetComponent<SpeedDie>().clash_target.transform.position) > range)
+            float range = 50f; // Adjust this value as needed
+            if (clashers[i].GetComponent<SpeedDie>() && clashers[i].GetComponent<SpeedDie>().clashed == false || clashers[i].GetComponent<EnemySpeedDie>() && clashers[i].GetComponent<EnemySpeedDie>().clashed == false)
             {
-                clashers[i].transform.position = Vector3.MoveTowards(clashers[i].transform.position, clashers[i].GetComponent<SpeedDie>().clash_target.transform.position, Time.deltaTime * 5);
-            }
-            else
-            {
-                //clash
-                if (clashers[i].GetComponent<Librarian>() != null)
+                if (clashers[i].GetComponent<SpeedDie>())
                 {
-                    // per librarian
-                    for (int j = 0; j < clashers[i].GetComponent<Librarian>().dice.Count; j++)
+                    while (Vector3.Distance(clashers[i].transform.position, clashers[i].GetComponent<SpeedDie>().clash_target.transform.position) > range)
                     {
-                        //per card
-                        selectedl = clashers[i].GetComponent<Librarian>();
-                        selectede = clashers[i].GetComponent<Librarian>().dice[j].clash_target.GetComponent<Enemy>();
-                        for  (int k = 0; k < selectedl.dice[j].selected_card.data.dice.Length; k++)
+                        Debug.Log("moving clashers");
+                        clashers[i].transform.position = Vector3.MoveTowards(clashers[i].transform.position, clashers[i].GetComponent<SpeedDie>().clash_target.transform.position, Time.deltaTime * 5);
+                        clashers[i].GetComponentInParent<Librarian>().transform.position = Vector3.MoveTowards(clashers[i].transform.position, clashers[i].GetComponent<SpeedDie>().clash_target.GetComponentInParent<Enemy>().transform.position, Time.deltaTime * 5);
+                    }
+                }
+                else if (clashers[i].GetComponent<EnemySpeedDie>())
+                {
+                    
+                }
+                
+                    
+                //clash
+                if (clashers[i].GetComponentInParent<Librarian>() != null)
+                {
+                    
+                     
+                    // per clasher
+                    
+                    //per card played
+                    selectedl = clashers[i].GetComponentInParent<Librarian>();
+                    selectede = clashers[i].GetComponent<SpeedDie>().clash_target.GetComponentInParent<Enemy>();
+                    for  (int k = 0; k < clashers[i].GetComponent<SpeedDie>().selected_card.data.dice.Length; k++)
+                    {
+                        //per die on card
+                        int temp1 = Random.Range(clashers[i].GetComponent<SpeedDie>().selected_card.data.dice[k].min, clashers[i].GetComponent<SpeedDie>().selected_card.data.dice[k].max);
+                        int temp2 = 0;
+
+                        if (clashers[i].GetComponent<SpeedDie>().clash_target.GetComponent<EnemySpeedDie>().selected_card.data.dice.Length > k)
                         {
-                            //per die
-                            int temp1 = Random.Range(selectedl.dice[j].selected_card.data.dice[k].min, selectedl.dice[j].selected_card.data.dice[k].max);
-                            int temp2 = Random.Range(selectede.dice[j].selected_card.data.dice[k].min, selectede.dice[j].selected_card.data.dice[k].max);
-                            if (temp1 > temp2)
+                            temp2 = Random.Range(clashers[i].GetComponent<SpeedDie>().clash_target.GetComponent<EnemySpeedDie>().selected_card.data.dice[k].min, clashers[i].GetComponent<SpeedDie>().clash_target.GetComponent<EnemySpeedDie>().selected_card.data.dice[k].max);
+                        }
+                        
+                        if (temp1 > temp2)
+                        {
+                            if (clashers[i].GetComponent<SpeedDie>().selected_card.data.dice[k].type != "block")
                             {
-                                if (selectede.dice[j].selected_card.data.dice[k].type != "block")
-                                {
-                                    selectede.health -= (temp1 - temp2);
-                                }
-                                else if (selectedl.dice[j].selected_card.data.dice[k].type != "evade")
-                                {
-                                    //do nothing
-                                }
-                                else
-                                {
-                                    selectede.health -= temp1;
-                                }
-                               
+                                selectede.health -= temp1 - temp2;
                             }
-                            else if (temp2 > temp1)
+                            else if (clashers[i].GetComponent<SpeedDie>().selected_card.data.dice[k].type != "evade")
                             {
-                                if (selectedl.dice[j].selected_card.data.dice[k].type != "block")
-                                {
-                                    selectedl.health -= (temp2 - temp1);
-                                }
-                                else if (selectede.dice[j].selected_card.data.dice[k].type != "evade")
-                                {
-                                    //do nothing
-                                }
-                                else
-                                {
-                                    selectedl.health -= temp2;
-                                }
+                                //do nothing
                             }
-                            
+                            else
+                            {
+                                selectede.health -= temp1;
+                            }
+                           
+                        }
+                        else if (temp2 > temp1)
+                        {
+                            if (clashers[i].GetComponent<SpeedDie>().selected_card.data.dice[k].type != "block")
+                            {
+                                selectedl.health -= temp2 - temp1;
+                            }
+                            else if (clashers[i].GetComponent<SpeedDie>().selected_card.data.dice[k].type != "evade")
+                            {
+                                //do nothing
+                            }
+                            else
+                            {
+                                selectedl.health -= temp2;
+                            }
                         }
                         
                     }
+                    clashers[i].GetComponent<SpeedDie>().clashed = true;
+                    clashers[i].GetComponent<SpeedDie>().clash_target.GetComponent<EnemySpeedDie>().clashed = true;
+                        
+                    
+                    //clashers[i].GetComponent<SpeedDie>().clashed = true;
+                    //clashers[i].GetComponent<EnemySpeedDie>().clashed = true;
 
                 }
+                    
                 
+
             }
         }
         

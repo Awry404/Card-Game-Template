@@ -10,6 +10,7 @@ public class SpeedDie : MonoBehaviour
     bool mouseover = false;
     public EnemySpeedDie clash_target;
     public Card selected_card;
+    public bool clashed = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

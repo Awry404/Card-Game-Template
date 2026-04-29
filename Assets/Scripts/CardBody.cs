@@ -11,7 +11,7 @@ public class CardBody : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         
         if (parent != null)
         {
-            Debug.Log("Parent card found: " + parent.card_name);
+            //Debug.Log("Parent card found: " + parent.card_name);
         }
         else
         {
@@ -46,7 +46,7 @@ public class CardBody : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         else if (parent.enemy_parent == null)
         {
         
-            Debug.Log("Pointer enter CardBody for card: " + parent.card_name);
+            //Debug.Log("Pointer enter CardBody for card: " + parent.card_name);
             parent.HighlightCard(); // Call the highlight method on the parent
             mouseover = true;
         }

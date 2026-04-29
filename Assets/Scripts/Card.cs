@@ -111,7 +111,7 @@ public class Card : MonoBehaviour
             if (parent.clicked_card == this)
             {
                 // Logic to target enemy die - implement this based on your game mechanics
-                Debug.Log("Card is currently selected: " + card_name);
+                //Debug.Log("Card is currently selected: " + card_name);
             }
     }
 
@@ -123,7 +123,7 @@ public class Card : MonoBehaviour
             transform.SetAsLastSibling(); // Bring to top layer
             //transform.localScale = Vector3.one * 1.1f; // Slightly enlarge the card
             transform.position += new Vector3(0, 50, 0); // Move up slightly
-            Debug.Log("Highlighted card: " + card_name);
+            //Debug.Log("Highlighted card: " + card_name);
         }
         else
         {
@@ -138,7 +138,7 @@ public class Card : MonoBehaviour
             BackgroundImage.color = Rarity; // Reset to default color
             //transform.localScale = Vector3.one; // Reset scale
             transform.position += new Vector3(0, -50, 0); 
-            Debug.Log("Unhighlighted card: " + card_name);
+            //Debug.Log("Unhighlighted card: " + card_name);
         }
         else
         {
@@ -153,7 +153,7 @@ public class Card : MonoBehaviour
             parent.clicked_card = this;
             GameManager.gm.selected_card = this;
             // Logic to target enemy die - implement this based on your game mechanics
-            Debug.Log("Card clicked: " + card_name);
+            //Debug.Log("Card clicked: " + card_name);
             // For example: Find enemy die and apply effect
         }
 

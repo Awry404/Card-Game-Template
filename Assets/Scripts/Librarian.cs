@@ -86,7 +86,7 @@ public class Librarian : MonoBehaviour
         //show available cards in hand
        for (int i = 0; i < hand.Count; i++)
         {
-            Debug.Log("Card " + i + ": " + hand[i].name);
+            //Debug.Log("Card " + i + ": " + hand[i].name);
             Card card = Instantiate(hand[i], canvas.transform);
             card.parent = this;
             card.locationinhand = i;
@@ -101,7 +101,7 @@ public class Librarian : MonoBehaviour
         //show available cards in hand
        for (int i = cardObjects.Count-1; i >= 0; i--)
         {
-            Debug.Log("Killed Card " + i + ": " + hand[i].name);
+            //Debug.Log("Killed Card " + i + ": " + hand[i].name);
             Destroy(cardObjects[i]);
         }
         cardObjects.Clear();

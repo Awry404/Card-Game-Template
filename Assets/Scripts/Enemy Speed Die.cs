@@ -12,6 +12,7 @@ public class EnemySpeedDie : MonoBehaviour
     public Card selected_card;
     public GameObject canvas;
     public List<GameObject> cardObjects = new List<GameObject>();
+    public bool clashed = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
