@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class Enemy : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class Enemy : MonoBehaviour
     public List<Card> truedeck = new List<Card>();
 
     public List<Card> hand = new List<Card>();
-    public string name = "Enemy";
+    public new string name = "Enemy";
     public List<EnemySpeedDie> dice = new List<EnemySpeedDie>();
     public List<GameObject> cardObjects = new List<GameObject>();
     
@@ -24,11 +25,14 @@ public class Enemy : MonoBehaviour
     public int index = 0;
     public int health = 20;
     public int stagger = 10;
+    public TextMeshProUGUI damageindicator;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         canvas = GameObject.Find("Canvas");
+        damageindicator = GetComponentInChildren<TMPro.TextMeshProUGUI>(true);
 
         hand.Clear();
         if (deck.Count == 0 && truedeck.Count > 0)
@@ -57,7 +61,10 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (damageindicator != null && damageindicator.gameObject.activeInHierarchy)
+        {
+            damageindicator.transform.position = transform.position + new Vector3(0, 2.5f, 0);
+        }
     }
 
     void draw(int amount)
@@ -116,6 +123,24 @@ public class Enemy : MonoBehaviour
             int randomIndex = Random.Range(i, deck.Count);
             deck[i] = deck[randomIndex];
             deck[randomIndex] = temp;
+        }
+    }
+
+     public void UpdateDI(string amt)
+    {
+        if (damageindicator == null)
+        {
+            damageindicator = GetComponentInChildren<TMPro.TextMeshProUGUI>(true);
+        }
+
+        if (damageindicator != null)
+        {
+            damageindicator.text = amt;
+            damageindicator.gameObject.SetActive(!string.IsNullOrEmpty(amt));
+        }
+        else
+        {
+            Debug.LogWarning("Enemy damageindicator is not assigned.");
         }
     }
 }

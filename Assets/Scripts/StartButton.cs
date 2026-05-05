@@ -18,7 +18,7 @@ public class StartButton : MonoBehaviour
             if (mouseover == true)
             {
                 Debug.Log("started clash");
-                GameManager.gm.Clash();
+                StartCoroutine(GameManager.gm.Clash());
             }
         }
     }

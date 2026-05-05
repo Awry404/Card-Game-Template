@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 //using System.Numerics;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -13,7 +14,7 @@ public class Librarian : MonoBehaviour
     public List<Card> truedeck = new List<Card>();
 
     public List<Card> hand = new List<Card>();
-    public string name = "Librarian";
+    public new string name = "Librarian";
     public List<SpeedDie> dice = new List<SpeedDie>();
     public List<GameObject> cardObjects = new List<GameObject>();
     
@@ -22,11 +23,14 @@ public class Librarian : MonoBehaviour
     public Card clicked_card;
     public int health = 20;
     public int stagger = 10;
+    public TextMeshProUGUI damageindicator;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         canvas = GameObject.Find("Canvas");
+        damageindicator = GetComponentInChildren<TMPro.TextMeshProUGUI>(true);
 
         hand.Clear();
         if (deck.Count == 0 && truedeck.Count > 0)
@@ -42,7 +46,10 @@ public class Librarian : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (damageindicator != null && damageindicator.gameObject.activeInHierarchy)
+        {
+            damageindicator.transform.position = transform.position + new Vector3(0, 2.5f, 0);
+        }
     }
 
     void draw(int amount)
@@ -116,6 +123,24 @@ public class Librarian : MonoBehaviour
             int randomIndex = Random.Range(i, deck.Count);
             deck[i] = deck[randomIndex];
             deck[randomIndex] = temp;
+        }
+    }
+
+    public void UpdateDI(string amt)
+    {
+        if (damageindicator == null)
+        {
+            damageindicator = GetComponentInChildren<TMPro.TextMeshProUGUI>(true);
+        }
+
+        if (damageindicator != null)
+        {
+            damageindicator.text = amt;
+            damageindicator.gameObject.SetActive(!string.IsNullOrEmpty(amt));
+        }
+        else
+        {
+            Debug.LogWarning("Librarian damageindicator is not assigned.");
         }
     }
 }
