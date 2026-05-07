@@ -24,21 +24,17 @@ public class Librarian : MonoBehaviour
     public int health = 20;
     public int stagger = 10;
     public TextMeshProUGUI damageindicator;
+    public Vector3 setlocation = new Vector3(0, 0, 0);
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        setlocation = transform.position;
         canvas = GameObject.Find("Canvas");
         damageindicator = GetComponentInChildren<TMPro.TextMeshProUGUI>(true);
 
-        hand.Clear();
-        if (deck.Count == 0 && truedeck.Count > 0)
-        {
-            deck = new List<Card>(truedeck);
-        }
-        ShuffleDeck();
-        draw(4);
+        
         
         dice = new List<SpeedDie>(GetComponentsInChildren<SpeedDie>());
     }
@@ -52,7 +48,19 @@ public class Librarian : MonoBehaviour
         }
     }
 
-    void draw(int amount)
+    public void turnstart()
+    {
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
+        for (int i = 0; i < dice.Count; i++)
+        {
+            dice[i].clashed = false;
+        }
+    }
+
+    public void draw(int amount)
     {
         if (deck.Count == 0 && truedeck.Count > 0)
         {
