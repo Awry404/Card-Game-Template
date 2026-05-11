@@ -25,6 +25,8 @@ public class Librarian : MonoBehaviour
     public int stagger = 10;
     public TextMeshProUGUI damageindicator;
     public Vector3 setlocation = new Vector3(0, 0, 0);
+    public int cost = 0;
+    public int maxcost = 3;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

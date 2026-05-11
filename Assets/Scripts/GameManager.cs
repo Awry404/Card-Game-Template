@@ -25,6 +25,10 @@ public class GameManager : MonoBehaviour
     public Librarian selectedl;
     public Enemy selectede;
     public int turn = 0;
+    public float clashKnockbackDistance = 12f;
+    public float clashKnockbackDuration = 0.08f;
+    public float clashWinnerAdvanceDistance = 6f;
+    public float clashWinnerAdvanceDuration = 0.08f;
 
 
     private void Awake()
@@ -113,6 +117,62 @@ public class GameManager : MonoBehaviour
         
     }
 
+    IEnumerator Knockback(Transform loser, Vector3 sourcePosition, float distance)
+    {
+        if (loser == null)
+        {
+            yield break;
+        }
+
+        Vector3 direction = loser.position - sourcePosition;
+        if (direction == Vector3.zero)
+        {
+            direction = Vector3.back;
+        }
+        direction.Normalize();
+
+        Vector3 start = loser.position;
+        Vector3 target = start + direction * distance;
+        float elapsed = 0f;
+
+        while (elapsed < clashKnockbackDuration)
+        {
+            loser.position = Vector3.Lerp(start, target, elapsed / clashKnockbackDuration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        loser.position = target;
+    }
+
+    IEnumerator AdvanceTowards(Transform winner, Vector3 targetPosition, float distance)
+    {
+        if (winner == null)
+        {
+            yield break;
+        }
+
+        Vector3 direction = targetPosition - winner.position;
+        if (direction == Vector3.zero)
+        {
+            yield break;
+        }
+        direction.Normalize();
+
+        Vector3 start = winner.position;
+        Vector3 target = start + direction * distance;
+        float elapsed = 0f;
+
+        while (elapsed < clashWinnerAdvanceDuration)
+        {
+            winner.position = Vector3.Lerp(start, target, elapsed / clashWinnerAdvanceDuration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        winner.position = target;
+    }
+
     public void startcombat()
     {
         enemies = new List<Enemy>(FindObjectsByType<Enemy>());
@@ -139,6 +199,7 @@ public class GameManager : MonoBehaviour
                 librarians[i].ShuffleDeck();
                 librarians[i].draw(4);
                 librarians[i].turnstart();
+                librarians[i].cost = librarians[i].maxcost;
             }
             for (int i = 0; i < enemies.Count; i++)
             {
@@ -159,6 +220,7 @@ public class GameManager : MonoBehaviour
                 librarians[i].KillCards();
                 librarians[i].draw(1);
                 librarians[i].turnstart();
+                librarians[i].cost += 1;
             }
             for (int i = 0; i < enemies.Count; i++)
             {
@@ -173,6 +235,8 @@ public class GameManager : MonoBehaviour
     {
         //figure
         clashers.Clear();
+        enemies = new List<Enemy>(FindObjectsByType<Enemy>());
+        librarians = new List<Librarian>(FindObjectsByType<Librarian>());
         for (int i = 0; i < enemies.Count; i++)
         {
             for (int j = 0; j < enemies[i].dice.Count; j++)
@@ -291,7 +355,9 @@ public class GameManager : MonoBehaviour
                                 selectede.health -= temp1;
                                 selectedl.UpdateDI(temp1.ToString());
                             }
-                           
+
+                            yield return StartCoroutine(Knockback(selectede.transform, playerDie.transform.position, clashKnockbackDistance));
+                            yield return StartCoroutine(AdvanceTowards(selectedl.transform, selectede.transform.position, clashWinnerAdvanceDistance));
                         }
                         else if (temp2 > temp1)
                         {
@@ -310,6 +376,9 @@ public class GameManager : MonoBehaviour
                                 selectedl.health -= temp2;
                                 selectede.UpdateDI(temp2.ToString());
                             }
+
+                            yield return StartCoroutine(Knockback(selectedl.transform, enemyDie.transform.position, clashKnockbackDistance));
+                            yield return StartCoroutine(AdvanceTowards(selectede.transform, selectedl.transform.position, clashWinnerAdvanceDistance));
                         }
                         //wait and then reset indicators
                         yield return new WaitForSeconds(1);
@@ -372,6 +441,9 @@ public class GameManager : MonoBehaviour
                                 selectedl.health -= temp1;
                                 selectede.UpdateDI(temp1.ToString());
                             }
+
+                            yield return StartCoroutine(Knockback(selectedl.transform, enemyDie.transform.position, clashKnockbackDistance));
+                            yield return StartCoroutine(AdvanceTowards(selectede.transform, selectedl.transform.position, clashWinnerAdvanceDistance));
                         }
                         else if (temp2 > temp1)
                         {
@@ -390,6 +462,9 @@ public class GameManager : MonoBehaviour
                                 selectede.health -= temp2;
                                 selectedl.UpdateDI(temp2.ToString());
                             }
+
+                            yield return StartCoroutine(Knockback(selectede.transform, playerDie.transform.position, clashKnockbackDistance));
+                            yield return StartCoroutine(AdvanceTowards(selectedl.transform, selectede.transform.position, clashWinnerAdvanceDistance));
                         }
                         //wait and then reset indicators
                         yield return new WaitForSeconds(1);
