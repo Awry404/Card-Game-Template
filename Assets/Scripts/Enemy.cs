@@ -58,7 +58,7 @@ public class Enemy : MonoBehaviour
     {
         if (damageindicator != null && damageindicator.gameObject.activeInHierarchy)
         {
-            damageindicator.transform.position = transform.position + new Vector3(0, 2.5f, 0);
+            damageindicator.transform.position = transform.position + new Vector3(0, -60f, 0);
         }
     }
 

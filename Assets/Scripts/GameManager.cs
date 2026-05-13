@@ -345,7 +345,7 @@ public class GameManager : MonoBehaviour
                                 selectede.health -= temp1 - temp2;
                                 selectedl.UpdateDI((temp1 - temp2).ToString());
                             }
-                            else if (k < enemyDiceCount && enemyDie.selected_card.data.dice[k].type == "evade")
+                            else if (k < enemyDiceCount && playerDie.selected_card.data.dice[k].type == "evade")
                             {
                                 //do nothing
                                 selectedl.UpdateDI("Missed");
@@ -366,7 +366,7 @@ public class GameManager : MonoBehaviour
                                 selectedl.health -= temp2 - temp1;
                                 selectede.UpdateDI((temp2 - temp1).ToString());
                             }
-                            else if (k < playerDiceCount && playerDie.selected_card.data.dice[k].type == "evade")
+                            else if (k < playerDiceCount && enemyDie.selected_card.data.dice[k].type == "evade")
                             {
                                 //do nothing
                                 selectede.UpdateDI("Missed");

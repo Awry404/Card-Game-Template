@@ -150,11 +150,16 @@ public class Card : MonoBehaviour
     {
         if (parent != null && enemy_parent == null)
         {
-            parent.clicked_card = this;
-            GameManager.gm.selected_card = this;
-            // Logic to target enemy die - implement this based on your game mechanics
-            //Debug.Log("Card clicked: " + card_name);
-            // For example: Find enemy die and apply effect
+            if (parent.cost >= cost)
+            {
+                
+            
+                parent.clicked_card = this;
+                GameManager.gm.selected_card = this;
+                // Logic to target enemy die - implement this based on your game mechanics
+                //Debug.Log("Card clicked: " + card_name);
+                // For example: Find enemy die and apply effect
+            }
         }
 
     }

@@ -60,10 +60,13 @@ public class SpeedDie : MonoBehaviour
                     if (selected_card != null)
                     {
                     librarian.hand.Add(selected_card);
+                    librarian.cost += selected_card.data.cost;
                     GameManager.gm.card_database.RemoveAt(selected_card.locationinhand);
                     GameManager.gm.CountCards();
                     selected_card = null;
                     clash_target = null;
+                    librarian.KillCards();
+                    librarian.OnDieClick();
                     }
                 }
                 else{

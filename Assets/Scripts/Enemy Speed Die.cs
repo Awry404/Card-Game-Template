@@ -57,6 +57,7 @@ public class EnemySpeedDie : MonoBehaviour
                         temp.selected_card = GameManager.gm.card_database[GameManager.gm.card_database.Count - 1];
                         temp.librarian.discard(card);
                         GameManager.gm.selected_card = null;
+                        temp.librarian.cost -= card.cost;
                         
                     }
                     else

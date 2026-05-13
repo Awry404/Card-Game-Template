@@ -24,6 +24,7 @@ public class Librarian : MonoBehaviour
     public int health = 20;
     public int stagger = 10;
     public TextMeshProUGUI damageindicator;
+    public TextMeshProUGUI costindicator;
     public Vector3 setlocation = new Vector3(0, 0, 0);
     public int cost = 0;
     public int maxcost = 3;
@@ -34,7 +35,8 @@ public class Librarian : MonoBehaviour
     {
         setlocation = transform.position;
         canvas = GameObject.Find("Canvas");
-        damageindicator = GetComponentInChildren<TMPro.TextMeshProUGUI>(true);
+        
+        
 
         
         
@@ -46,7 +48,12 @@ public class Librarian : MonoBehaviour
     {
         if (damageindicator != null && damageindicator.gameObject.activeInHierarchy)
         {
-            damageindicator.transform.position = transform.position + new Vector3(0, 2.5f, 0);
+            damageindicator.transform.position = transform.position + new Vector3(0, -60f, 0);
+        }
+        if (costindicator != null && costindicator.gameObject.activeInHierarchy)
+        {
+            costindicator.transform.position = transform.position + new Vector3(0, 40f, 0);
+            costindicator.text = cost.ToString();
         }
     }
 
