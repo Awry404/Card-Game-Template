@@ -27,7 +27,15 @@ public class Enemy : MonoBehaviour
     public int stagger = 10;
     public TextMeshProUGUI damageindicator;
     public Vector3 setlocation = new Vector3(0, 0, 0);
-
+    public SpriteRenderer spriterenderer;
+    public Sprite normal;
+    public Sprite staggered;
+    public Sprite pierce;
+    public Sprite blunt;
+    public Sprite slash;
+    public Sprite guard;
+    public Sprite move;
+    public Vector3 DIOffset = new Vector3(10, -50f, 0);
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -38,6 +46,7 @@ public class Enemy : MonoBehaviour
         damageindicator = GetComponentInChildren<TMPro.TextMeshProUGUI>(true);
         
         dice = new List<EnemySpeedDie>(GetComponentsInChildren<EnemySpeedDie>());
+        spriterenderer = GetComponent<SpriteRenderer>();
         //for (int i = 0; i < dice.Count; i++)
         //{
         //    dice[i].selected_card = hand[1];
@@ -58,7 +67,7 @@ public class Enemy : MonoBehaviour
     {
         if (damageindicator != null && damageindicator.gameObject.activeInHierarchy)
         {
-            damageindicator.transform.position = transform.position + new Vector3(0, -60f, 0);
+            damageindicator.transform.position = transform.position + DIOffset;
         }
     }
 
@@ -100,20 +109,22 @@ public class Enemy : MonoBehaviour
 
     public void turnstart()
     {
+        spriterenderer.sprite = normal;
+        transform.localScale = new Vector3(-20, 20, 20);
         if (health <= 0)
         {
             Destroy(gameObject);
         }
-            for (int i = 0; i < dice.Count; i++)
-            {
-                dice[i].clashed = false;
-                dice[i].selected_card = hand[0];
-                hand.RemoveAt(0);
-                //find all player dice
-                player_dice = new List<SpeedDie>(FindObjectsByType<SpeedDie>());
-                index = Random.Range(0, player_dice.Count);
-                dice[i].clash_target = player_dice[index];
-            }
+        for (int i = 0; i < dice.Count; i++)
+        {
+            dice[i].clashed = false;
+            dice[i].selected_card = hand[0];
+            hand.RemoveAt(0);
+            //find all player dice
+            player_dice = new List<SpeedDie>(FindObjectsByType<SpeedDie>());
+            index = Random.Range(0, player_dice.Count);
+            dice[i].clash_target = player_dice[index];
+        }
     }
 
     public void KillCards()

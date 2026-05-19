@@ -177,56 +177,70 @@ public class GameManager : MonoBehaviour
     {
         enemies = new List<Enemy>(FindObjectsByType<Enemy>());
         librarians = new List<Librarian>(FindObjectsByType<Librarian>());
+        if (librarians.Count <= 0)
+        {
+            Debug.Log("Combat cannot start without both librarians and enemies.");
+            return;
+        }
         
-        for (int i = 0; i < librarians.Count; i++)
+        else if (enemies.Count <= 0)
         {
-            librarians[i].transform.position = librarians[i].setlocation;
+            //
         }
-        for (int i = 0; i < enemies.Count; i++)
-        {
-            enemies[i].transform.position = enemies[i].setlocation;
-        }
+        
 
-        if (turn == 0)
-        {
-            for (int i = 0; i < librarians.Count; i++)
-            {
-                librarians[i].hand.Clear();
-                if (librarians[i].deck.Count == 0 && librarians[i].truedeck.Count > 0)
-                {
-                    librarians[i].deck = new List<Card>(librarians[i].truedeck);
-                }
-                librarians[i].ShuffleDeck();
-                librarians[i].draw(4);
-                librarians[i].turnstart();
-                librarians[i].cost = librarians[i].maxcost;
-            }
-            for (int i = 0; i < enemies.Count; i++)
-            {
-                enemies[i].hand.Clear();
-                if (enemies[i].deck.Count == 0 && enemies[i].truedeck.Count > 0)
-                {
-                    enemies[i].deck = new List<Card>(enemies[i].truedeck);
-                }
-                enemies[i].ShuffleDeck();
-                enemies[i].draw(4);
-                enemies[i].turnstart();
-            }
-        }       
         else
         {
             for (int i = 0; i < librarians.Count; i++)
             {
-                librarians[i].KillCards();
-                librarians[i].draw(1);
-                librarians[i].turnstart();
-                librarians[i].cost += 1;
+                librarians[i].transform.position = librarians[i].setlocation;
             }
             for (int i = 0; i < enemies.Count; i++)
             {
-                enemies[i].KillCards();
-                enemies[i].draw(1);
-                enemies[i].turnstart();
+                enemies[i].transform.position = enemies[i].setlocation;
+            }
+
+            if (turn == 0)
+            {
+                for (int i = 0; i < librarians.Count; i++)
+                {
+                    librarians[i].hand.Clear();
+                    if (librarians[i].deck.Count == 0 && librarians[i].truedeck.Count > 0)
+                    {
+                        librarians[i].deck = new List<Card>(librarians[i].truedeck);
+                    }
+                    librarians[i].ShuffleDeck();
+                    librarians[i].draw(4);
+                    librarians[i].turnstart();
+                    librarians[i].cost = librarians[i].maxcost;
+                }
+                for (int i = 0; i < enemies.Count; i++)
+                {
+                    enemies[i].hand.Clear();
+                    if (enemies[i].deck.Count == 0 && enemies[i].truedeck.Count > 0)
+                    {
+                        enemies[i].deck = new List<Card>(enemies[i].truedeck);
+                    }
+                    enemies[i].ShuffleDeck();
+                    enemies[i].draw(4);
+                    enemies[i].turnstart();
+                }
+            }       
+            else
+            {
+                for (int i = 0; i < librarians.Count; i++)
+                {
+                    librarians[i].KillCards();
+                    librarians[i].draw(1);
+                    librarians[i].turnstart();
+                    librarians[i].cost += 1;
+                }
+                for (int i = 0; i < enemies.Count; i++)
+                {
+                    enemies[i].KillCards();
+                    enemies[i].draw(1);
+                    enemies[i].turnstart();
+                }
             }
         }
     }
@@ -276,6 +290,7 @@ public class GameManager : MonoBehaviour
                 {
                     targetPosition = speedDie.clash_target.transform.position;
                     parentTransform = speedDie.librarian.transform;
+                    clashers[i].GetComponent<SpeedDie>().GetComponentInParent<Librarian>().spriterenderer.sprite = clashers[i].GetComponent<SpeedDie>().librarian.move;
                 }
                 else
                 {
@@ -340,6 +355,23 @@ public class GameManager : MonoBehaviour
                         
                         if (temp1 > temp2)
                         {
+                            if (clashers[i].GetComponent<SpeedDie>().selected_card.data.dice[k].type == "blunt")
+                            {
+                                clashers[i].GetComponent<SpeedDie>().librarian.spriterenderer.sprite = clashers[i].GetComponent<SpeedDie>().librarian.blunt;
+                            }
+                            else if (clashers[i].GetComponent<SpeedDie>().selected_card.data.dice[k].type == "pierce")
+                            {
+                                clashers[i].GetComponent<SpeedDie>().librarian.spriterenderer.sprite = clashers[i].GetComponent<SpeedDie>().librarian.pierce;
+                            }
+                            else if (clashers[i].GetComponent<SpeedDie>().selected_card.data.dice[k].type == "slash")
+                            {
+                                clashers[i].GetComponent<SpeedDie>().librarian.spriterenderer.sprite = clashers[i].GetComponent<SpeedDie>().librarian.slash;
+                            }
+                            else if (clashers[i].GetComponent<SpeedDie>().selected_card.data.dice[k].type == "guard")
+                            {
+                                clashers[i].GetComponent<SpeedDie>().librarian.spriterenderer.sprite = clashers[i].GetComponent<SpeedDie>().librarian.guard;
+                            }
+
                             if (k < enemyDiceCount && enemyDie.selected_card.data.dice[k].type == "block")
                             {
                                 selectede.health -= temp1 - temp2;
@@ -361,6 +393,23 @@ public class GameManager : MonoBehaviour
                         }
                         else if (temp2 > temp1)
                         {
+                            if (clashers[i].GetComponent<SpeedDie>().clash_target.GetComponent<EnemySpeedDie>().selected_card.data.dice[k].type == "blunt")
+                            {
+                                clashers[i].GetComponent<SpeedDie>().clash_target.GetComponent<EnemySpeedDie>().GetComponentInParent<Enemy>().spriterenderer.sprite = clashers[i].GetComponent<SpeedDie>().clash_target.GetComponent<EnemySpeedDie>().GetComponentInParent<Enemy>().blunt;
+                            }
+                            else if (clashers[i].GetComponent<SpeedDie>().clash_target.GetComponent<EnemySpeedDie>().selected_card.data.dice[k].type == "pierce")
+                            {
+                                clashers[i].GetComponent<SpeedDie>().clash_target.GetComponent<EnemySpeedDie>().GetComponentInParent<Enemy>().spriterenderer.sprite = clashers[i].GetComponent<SpeedDie>().clash_target.GetComponent<EnemySpeedDie>().GetComponentInParent<Enemy>().pierce;
+                            }
+                            else if (clashers[i].GetComponent<SpeedDie>().clash_target.GetComponent<EnemySpeedDie>().selected_card.data.dice[k].type == "slash")
+                            {
+                                clashers[i].GetComponent<SpeedDie>().clash_target.GetComponent<EnemySpeedDie>().GetComponentInParent<Enemy>().spriterenderer.sprite = clashers[i].GetComponent<SpeedDie>().clash_target.GetComponent<EnemySpeedDie>().GetComponentInParent<Enemy>().slash;
+                            }
+                            else if (clashers[i].GetComponent<SpeedDie>().clash_target.GetComponent<EnemySpeedDie>().selected_card.data.dice[k].type == "guard")
+                            {
+                                clashers[i].GetComponent<SpeedDie>().clash_target.GetComponent<EnemySpeedDie>().GetComponentInParent<Enemy>().spriterenderer.sprite = clashers[i].GetComponent<SpeedDie>().clash_target.GetComponent<EnemySpeedDie>().GetComponentInParent<Enemy>().guard;
+                            }
+
                             if (k < playerDiceCount && playerDie.selected_card.data.dice[k].type == "block")
                             {
                                 selectedl.health -= temp2 - temp1;
@@ -384,10 +433,14 @@ public class GameManager : MonoBehaviour
                         yield return new WaitForSeconds(1);
                         selectedl.UpdateDI("");
                         selectede.UpdateDI("");
+                        clashers[i].GetComponent<SpeedDie>().GetComponentInParent<Librarian>().spriterenderer.sprite = clashers[i].GetComponent<SpeedDie>().librarian.move;
+                        clashers[i].GetComponent<SpeedDie>().clash_target.GetComponent<EnemySpeedDie>().GetComponentInParent<Enemy>().spriterenderer.sprite = clashers[i].GetComponent<SpeedDie>().clash_target.GetComponent<EnemySpeedDie>().GetComponentInParent<Enemy>().move;
                         
                     }
                     clashers[i].GetComponent<SpeedDie>().clashed = true;
                     clashers[i].GetComponent<SpeedDie>().clash_target.GetComponent<EnemySpeedDie>().clashed = true;
+                    clashers[i].GetComponent<SpeedDie>().GetComponentInParent<Librarian>().spriterenderer.sprite = clashers[i].GetComponent<SpeedDie>().librarian.normal;
+                    clashers[i].GetComponent<SpeedDie>().clash_target.GetComponent<EnemySpeedDie>().GetComponentInParent<Enemy>().spriterenderer.sprite = clashers[i].GetComponent<SpeedDie>().clash_target.GetComponent<EnemySpeedDie>().GetComponentInParent<Enemy>().normal;
                     
 
                 }
@@ -402,7 +455,15 @@ public class GameManager : MonoBehaviour
                     EnemySpeedDie enemyDie = clashers[i].GetComponent<EnemySpeedDie>();
                     SpeedDie playerDie = enemyDie.clash_target;
                     int enemyDiceCount = enemyDie.selected_card.data.dice.Length;
-                    int playerDiceCount = playerDie.selected_card.data.dice.Length;
+                    int playerDiceCount = 0;
+                    if (playerDie.selected_card == null)
+                    {
+                        playerDiceCount = 0;
+                    }
+                    else
+                    {
+                        playerDiceCount = playerDie.selected_card.data.dice.Length;
+                    }
                     int maxDice = Mathf.Max(enemyDiceCount, playerDiceCount);
                     for (int k = 0; k < maxDice; k++)
                     {
@@ -426,6 +487,23 @@ public class GameManager : MonoBehaviour
 
                         if (temp1 > temp2)
                         {
+                            if (clashers[i].GetComponent<EnemySpeedDie>().selected_card.data.dice[k].type == "blunt")
+                            {
+                                clashers[i].GetComponent<EnemySpeedDie>().GetComponentInParent<Enemy>().spriterenderer.sprite = clashers[i].GetComponent<EnemySpeedDie>().GetComponentInParent<Enemy>().blunt;
+                            }
+                            else if (clashers[i].GetComponent<EnemySpeedDie>().selected_card.data.dice[k].type == "pierce")
+                            {
+                                clashers[i].GetComponent<EnemySpeedDie>().GetComponentInParent<Enemy>().spriterenderer.sprite = clashers[i].GetComponent<EnemySpeedDie>().GetComponentInParent<Enemy>().pierce;
+                            }
+                            else if (clashers[i].GetComponent<EnemySpeedDie>().selected_card.data.dice[k].type == "slash")
+                            {
+                                clashers[i].GetComponent<EnemySpeedDie>().GetComponentInParent<Enemy>().spriterenderer.sprite = clashers[i].GetComponent<EnemySpeedDie>().GetComponentInParent<Enemy>().slash;
+                            }
+                            else if (clashers[i].GetComponent<EnemySpeedDie>().selected_card.data.dice[k].type == "guard")
+                            {
+                                clashers[i].GetComponent<EnemySpeedDie>().GetComponentInParent<Enemy>().spriterenderer.sprite = clashers[i].GetComponent<EnemySpeedDie>().GetComponentInParent<Enemy>().guard;
+                            }
+
                             if (k < playerDiceCount && playerDie.selected_card.data.dice[k].type == "block")
                             {
                                 selectedl.health -= temp1 - temp2;
@@ -447,6 +525,23 @@ public class GameManager : MonoBehaviour
                         }
                         else if (temp2 > temp1)
                         {
+                            if (enemyDie.clash_target.GetComponent<SpeedDie>().selected_card.data.dice[k].type == "blunt")
+                            {
+                                clashers[i].GetComponent<EnemySpeedDie>().clash_target.GetComponent<SpeedDie>().librarian.spriterenderer.sprite = clashers[i].GetComponent<EnemySpeedDie>().clash_target.GetComponent<SpeedDie>().librarian.blunt;
+                            }
+                            else if (enemyDie.clash_target.GetComponent<SpeedDie>().selected_card.data.dice[k].type == "pierce")
+                            {
+                                clashers[i].GetComponent<EnemySpeedDie>().clash_target.GetComponent<SpeedDie>().librarian.spriterenderer.sprite = clashers[i].GetComponent<EnemySpeedDie>().clash_target.GetComponent<SpeedDie>().librarian.pierce;
+                            }
+                            else if (enemyDie.clash_target.GetComponent<SpeedDie>().selected_card.data.dice[k].type == "slash")
+                            {
+                                clashers[i].GetComponent<EnemySpeedDie>().clash_target.GetComponent<SpeedDie>().librarian.spriterenderer.sprite = clashers[i].GetComponent<EnemySpeedDie>().clash_target.GetComponent<SpeedDie>().librarian.slash;
+                            }
+                            else if (enemyDie.clash_target.GetComponent<SpeedDie>().selected_card.data.dice[k].type == "guard")
+                            {
+                                clashers[i].GetComponent<EnemySpeedDie>().clash_target.GetComponent<SpeedDie>().librarian.spriterenderer.sprite = clashers[i].GetComponent<EnemySpeedDie>().clash_target.GetComponent<SpeedDie>().librarian.guard;
+                            }
+                            
                             if (k < enemyDiceCount && enemyDie.selected_card.data.dice[k].type == "block")
                             {
                                 selectede.health -= temp2 - temp1;
@@ -470,9 +565,13 @@ public class GameManager : MonoBehaviour
                         yield return new WaitForSeconds(1);
                         selectede.UpdateDI("");
                         selectedl.UpdateDI("");
+                        clashers[i].GetComponent<EnemySpeedDie>().GetComponentInParent<Enemy>().spriterenderer.sprite = clashers[i].GetComponent<EnemySpeedDie>().GetComponentInParent<Enemy>().move;
+                        clashers[i].GetComponent<EnemySpeedDie>().clash_target.GetComponent<SpeedDie>().librarian.spriterenderer.sprite = clashers[i].GetComponent<EnemySpeedDie>().clash_target.GetComponent<SpeedDie>().librarian.move;
                     }
                     clashers[i].GetComponent<EnemySpeedDie>().clashed = true;
                     clashers[i].GetComponent<EnemySpeedDie>().clash_target.GetComponent<SpeedDie>().clashed = true;
+                    clashers[i].GetComponent<EnemySpeedDie>().GetComponentInParent<Enemy>().spriterenderer.sprite = clashers[i].GetComponent<EnemySpeedDie>().GetComponentInParent<Enemy>().normal;
+                    clashers[i].GetComponent<EnemySpeedDie>().clash_target.GetComponent<SpeedDie>().librarian.spriterenderer.sprite = clashers[i].GetComponent<EnemySpeedDie>().clash_target.GetComponent<SpeedDie>().librarian.normal;
                 }
                     
                 

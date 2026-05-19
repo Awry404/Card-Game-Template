@@ -28,6 +28,18 @@ public class Librarian : MonoBehaviour
     public Vector3 setlocation = new Vector3(0, 0, 0);
     public int cost = 0;
     public int maxcost = 3;
+    public SpriteRenderer spriterenderer;
+    public Sprite normal;
+    public Sprite staggered;
+    public Sprite pierce;
+    public Sprite blunt;
+    public Sprite slash;
+    public Sprite guard;
+    public Sprite move;
+    public Vector3 DIOffset = new Vector3(20, -60f, 0);
+    public Vector3 CIOffset = new Vector3(40, 65f, 0);
+    
+    
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -35,6 +47,7 @@ public class Librarian : MonoBehaviour
     {
         setlocation = transform.position;
         canvas = GameObject.Find("Canvas");
+        spriterenderer = GetComponent<SpriteRenderer>();
         
         
 
@@ -48,11 +61,11 @@ public class Librarian : MonoBehaviour
     {
         if (damageindicator != null && damageindicator.gameObject.activeInHierarchy)
         {
-            damageindicator.transform.position = transform.position + new Vector3(0, -60f, 0);
+            damageindicator.transform.position = transform.position + DIOffset;
         }
         if (costindicator != null && costindicator.gameObject.activeInHierarchy)
         {
-            costindicator.transform.position = transform.position + new Vector3(0, 40f, 0);
+            costindicator.transform.position = transform.position + CIOffset;
             costindicator.text = cost.ToString();
         }
     }
@@ -67,6 +80,7 @@ public class Librarian : MonoBehaviour
         {
             dice[i].clashed = false;
         }
+        spriterenderer.sprite = normal;
     }
 
     public void draw(int amount)

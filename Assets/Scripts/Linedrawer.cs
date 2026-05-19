@@ -31,8 +31,8 @@ public class Linedrawer : MonoBehaviour
             lineRenderer.SetPosition(1, endPoint);
             if (parent.clash_target.clash_target != parent)
             {
-                lineRenderer.startColor = Color.pink;
-                lineRenderer.endColor = Color.pink;
+                lineRenderer.startColor = Color.green;
+                lineRenderer.endColor = Color.green;
             }
             else if (parent.clash_target.clash_target == parent)
             {
@@ -49,8 +49,8 @@ public class Linedrawer : MonoBehaviour
             lineRenderer.SetPosition(1, endPoint);
             if (enemy_parent.clash_target.clash_target != enemy_parent)
             {
-                lineRenderer.startColor = Color.pink;
-                lineRenderer.endColor = Color.pink;
+                lineRenderer.startColor = Color.green;
+                lineRenderer.endColor = Color.green;
             }
             else if (enemy_parent.clash_target.clash_target == enemy_parent)
             {
