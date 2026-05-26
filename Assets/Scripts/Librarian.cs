@@ -22,6 +22,7 @@ public class Librarian : MonoBehaviour
     public Vector3 Coffset;
     public Card clicked_card;
     public int health = 20;
+    public int maxhealth = 20;
     public int stagger = 10;
     public TextMeshProUGUI damageindicator;
     public TextMeshProUGUI costindicator;
@@ -38,6 +39,7 @@ public class Librarian : MonoBehaviour
     public Sprite move;
     public Vector3 DIOffset = new Vector3(20, -60f, 0);
     public Vector3 CIOffset = new Vector3(40, 65f, 0);
+    public Color tint = new Color(1f, 1f, 1f, 1f);
     
     
 
@@ -71,7 +73,10 @@ public class Librarian : MonoBehaviour
     }
 
     public void turnstart()
-    {
+    { 
+        tint = new Color(1f * (health / (float)maxhealth), 1f * (health / (float)maxhealth), 1f * (health / (float)maxhealth), 1f);
+        spriterenderer.sprite = normal;
+        spriterenderer.color = tint;
         if (health <= 0)
         {
             Destroy(gameObject);
@@ -80,7 +85,6 @@ public class Librarian : MonoBehaviour
         {
             dice[i].clashed = false;
         }
-        spriterenderer.sprite = normal;
     }
 
     public void draw(int amount)

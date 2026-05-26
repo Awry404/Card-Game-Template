@@ -24,6 +24,7 @@ public class Enemy : MonoBehaviour
     public List<SpeedDie> player_dice = new List<SpeedDie>();
     public int index = 0;
     public int health = 20;
+    public int maxhealth = 20;
     public int stagger = 10;
     public TextMeshProUGUI damageindicator;
     public Vector3 setlocation = new Vector3(0, 0, 0);
@@ -36,6 +37,7 @@ public class Enemy : MonoBehaviour
     public Sprite guard;
     public Sprite move;
     public Vector3 DIOffset = new Vector3(10, -50f, 0);
+    public Color tint = new Color(1f, 1f, 1f, 1f);
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -109,7 +111,9 @@ public class Enemy : MonoBehaviour
 
     public void turnstart()
     {
+        tint = new Color(1f * (health / (float)maxhealth), 1f * (health / (float)maxhealth), 1f * (health / (float)maxhealth), 1f);
         spriterenderer.sprite = normal;
+        spriterenderer.color = tint;
         transform.localScale = new Vector3(20, 20, 20);
         if (health <= 0)
         {
