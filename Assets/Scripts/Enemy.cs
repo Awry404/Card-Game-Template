@@ -110,7 +110,7 @@ public class Enemy : MonoBehaviour
     public void turnstart()
     {
         spriterenderer.sprite = normal;
-        transform.localScale = new Vector3(-20, 20, 20);
+        transform.localScale = new Vector3(20, 20, 20);
         if (health <= 0)
         {
             Destroy(gameObject);

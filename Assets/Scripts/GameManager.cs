@@ -25,9 +25,10 @@ public class GameManager : MonoBehaviour
     public Librarian selectedl;
     public Enemy selectede;
     public int turn = 0;
-    public float clashKnockbackDistance = 12f;
+    public float clashKnockbackDistance = 100f;
     public float clashKnockbackDuration = 0.08f;
-    public float clashWinnerAdvanceDistance = 6f;
+    public float clashKnockbackDamageMultiplier = 2f;
+    public float clashWinnerAdvanceDistance = 50f;
     public float clashWinnerAdvanceDuration = 0.08f;
 
 
@@ -117,7 +118,7 @@ public class GameManager : MonoBehaviour
         
     }
 
-    IEnumerator Knockback(Transform loser, Vector3 sourcePosition, float distance)
+    IEnumerator Knockback(Transform loser, Vector3 sourcePosition, float distance, int damage = 0)
     {
         if (loser == null)
         {
@@ -127,12 +128,15 @@ public class GameManager : MonoBehaviour
         Vector3 direction = loser.position - sourcePosition;
         if (direction == Vector3.zero)
         {
-            direction = Vector3.back;
+            direction = Vector3.Scale(Vector3.back, new Vector3(1, 0.5f, 1));
         }
         direction.Normalize();
 
+        // Scale knockback distance based on damage
+        float scaledDistance = distance + (damage * clashKnockbackDamageMultiplier);
+
         Vector3 start = loser.position;
-        Vector3 target = start + direction * distance;
+        Vector3 target = start + direction * scaledDistance;
         float elapsed = 0f;
 
         while (elapsed < clashKnockbackDuration)
@@ -280,8 +284,8 @@ public class GameManager : MonoBehaviour
             var enemySpeedDie = clashers[i].GetComponent<EnemySpeedDie>();
             if ((speedDie != null && speedDie.clashed == false) || (enemySpeedDie != null && enemySpeedDie.clashed == false))
             {
-                float moveSpeed = 100f;
-                float stopDistance = 50f;
+                float moveSpeed = 200f;
+                float stopDistance = 100f;
                 Vector3 targetPosition;
                 Transform parentTransform;
                 Vector3 dieWorldOffset;
@@ -296,6 +300,7 @@ public class GameManager : MonoBehaviour
                 {
                     targetPosition = enemySpeedDie.clash_target.transform.position;
                     parentTransform = enemySpeedDie.GetComponentInParent<Enemy>().transform;
+                    clashers[i].GetComponent<EnemySpeedDie>().GetComponentInParent<Enemy>().spriterenderer.sprite = clashers[i].GetComponent<EnemySpeedDie>().GetComponentInParent<Enemy>().move;
                 }
 
                 dieWorldOffset = clashers[i].transform.position - parentTransform.position;
@@ -388,7 +393,7 @@ public class GameManager : MonoBehaviour
                                 selectedl.UpdateDI(temp1.ToString());
                             }
 
-                            yield return StartCoroutine(Knockback(selectede.transform, playerDie.transform.position, clashKnockbackDistance));
+                            yield return StartCoroutine(Knockback(selectede.transform, playerDie.transform.position, clashKnockbackDistance, temp1));
                             yield return StartCoroutine(AdvanceTowards(selectedl.transform, selectede.transform.position, clashWinnerAdvanceDistance));
                         }
                         else if (temp2 > temp1)
@@ -426,7 +431,7 @@ public class GameManager : MonoBehaviour
                                 selectede.UpdateDI(temp2.ToString());
                             }
 
-                            yield return StartCoroutine(Knockback(selectedl.transform, enemyDie.transform.position, clashKnockbackDistance));
+                            yield return StartCoroutine(Knockback(selectedl.transform, enemyDie.transform.position, clashKnockbackDistance, temp2));
                             yield return StartCoroutine(AdvanceTowards(selectede.transform, selectedl.transform.position, clashWinnerAdvanceDistance));
                         }
                         //wait and then reset indicators

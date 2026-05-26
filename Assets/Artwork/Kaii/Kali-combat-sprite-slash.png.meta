@@ -1,0 +1,767 @@
+fileFormatVersion: 2
+guid: f5a1ef024b7484afe92f38af3981b166
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4427458498234427736
+    second: Kali-combat-sprite-slash_0
+  - first:
+      213: -5913819871912248192
+    second: Kali-combat-sprite-slash_1
+  - first:
+      213: 4761453076080885422
+    second: Kali-combat-sprite-slash_2
+  - first:
+      213: 6465922515883117937
+    second: Kali-combat-sprite-slash_3
+  - first:
+      213: -6157189844948650909
+    second: Kali-combat-sprite-slash_4
+  - first:
+      213: 4590557648521132299
+    second: Kali-combat-sprite-slash_5
+  - first:
+      213: 7598949485918530644
+    second: Kali-combat-sprite-slash_6
+  - first:
+      213: 7273525911834298935
+    second: Kali-combat-sprite-slash_7
+  - first:
+      213: -542933375625679406
+    second: Kali-combat-sprite-slash_8
+  - first:
+      213: 2950466273050471931
+    second: Kali-combat-sprite-slash_9
+  - first:
+      213: -7294786828538022311
+    second: Kali-combat-sprite-slash_10
+  - first:
+      213: 5635056903982713020
+    second: Kali-combat-sprite-slash_11
+  - first:
+      213: 3713071274407681501
+    second: Kali-combat-sprite-slash_12
+  - first:
+      213: -3842820634515175517
+    second: Kali-combat-sprite-slash_13
+  - first:
+      213: -5087419019968311911
+    second: Kali-combat-sprite-slash_14
+  - first:
+      213: -1843128160840374808
+    second: Kali-combat-sprite-slash_15
+  - first:
+      213: 6410302567695122217
+    second: Kali-combat-sprite-slash_16
+  - first:
+      213: 2753190749320890336
+    second: Kali-combat-sprite-slash_17
+  - first:
+      213: -4691639158626969634
+    second: Kali-combat-sprite-slash_18
+  - first:
+      213: -7602604317341530795
+    second: Kali-combat-sprite-slash_19
+  - first:
+      213: -4774720723755016471
+    second: Kali-combat-sprite-slash_20
+  - first:
+      213: -2697329181634178492
+    second: Kali-combat-sprite-slash_21
+  - first:
+      213: 1434763095980293497
+    second: Kali-combat-sprite-slash_22
+  - first:
+      213: -13657097237631587
+    second: Kali-combat-sprite-slash_23
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Kali-combat-sprite-slash_0
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 674
+        width: 25
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8592c05eb0e717d30800000000000000
+      internalID: 4427458498234427736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kali-combat-sprite-slash_1
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 705
+        width: 30
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08c3605c824ededa0800000000000000
+      internalID: -5913819871912248192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kali-combat-sprite-slash_2
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 37
+        width: 819
+        height: 596
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eaefd7e6854141240800000000000000
+      internalID: 4761453076080885422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kali-combat-sprite-slash_3
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 604
+        width: 15
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17dc96035429bb950800000000000000
+      internalID: 6465922515883117937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kali-combat-sprite-slash_4
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 514
+        width: 24
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 364713d45744d8aa0800000000000000
+      internalID: -6157189844948650909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kali-combat-sprite-slash_5
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 512
+        width: 19
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b09fd090cdfe4bf30800000000000000
+      internalID: 4590557648521132299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kali-combat-sprite-slash_6
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 494
+        width: 20
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45caf46eb44e47960800000000000000
+      internalID: 7598949485918530644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kali-combat-sprite-slash_7
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 390
+        width: 70
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73a8b7fa741c0f460800000000000000
+      internalID: 7273525911834298935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kali-combat-sprite-slash_8
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 420
+        width: 16
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2dda021b8fc1778f0800000000000000
+      internalID: -542933375625679406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kali-combat-sprite-slash_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 388
+        width: 44
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bfda1fe617922f820800000000000000
+      internalID: 2950466273050471931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kali-combat-sprite-slash_10
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 375
+        width: 28
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 956fac46706b3ca90800000000000000
+      internalID: -7294786828538022311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kali-combat-sprite-slash_11
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 359
+        width: 23
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb8800bf56eb33e40800000000000000
+      internalID: 5635056903982713020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kali-combat-sprite-slash_12
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 348
+        width: 19
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dddd6c0c6aa778330800000000000000
+      internalID: 3713071274407681501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kali-combat-sprite-slash_13
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 349
+        width: 13
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a78e283efe8baac0800000000000000
+      internalID: -3842820634515175517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kali-combat-sprite-slash_14
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 341
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99d093b0b5bd569b0800000000000000
+      internalID: -5087419019968311911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kali-combat-sprite-slash_15
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 339
+        width: 14
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e52799f3b4eb66e0800000000000000
+      internalID: -1843128160840374808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kali-combat-sprite-slash_16
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 336
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92ffd3ad838f5f850800000000000000
+      internalID: 6410302567695122217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kali-combat-sprite-slash_17
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 315
+        width: 50
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e7c924466c453620800000000000000
+      internalID: 2753190749320890336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kali-combat-sprite-slash_18
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 314
+        width: 20
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed71ab7ea03f3eeb0800000000000000
+      internalID: -4691639158626969634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kali-combat-sprite-slash_19
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 325
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 555c10957af1e7690800000000000000
+      internalID: -7602604317341530795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kali-combat-sprite-slash_20
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 299
+        width: 18
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9eed2ee9cc8ccbdb0800000000000000
+      internalID: -4774720723755016471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kali-combat-sprite-slash_21
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 255
+        width: 68
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 442566e7669219ad0800000000000000
+      internalID: -2697329181634178492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kali-combat-sprite-slash_22
+      rect:
+        serializedVersion: 2
+        x: 808
+        y: 0
+        width: 38
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97dbeb02f6d49e310800000000000000
+      internalID: 1434763095980293497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kali-combat-sprite-slash_23
+      rect:
+        serializedVersion: 2
+        x: 930
+        y: 4
+        width: 70
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9dec7241fa7fcff0800000000000000
+      internalID: -13657097237631587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Kali-combat-sprite-slash_0: 4427458498234427736
+      Kali-combat-sprite-slash_1: -5913819871912248192
+      Kali-combat-sprite-slash_10: -7294786828538022311
+      Kali-combat-sprite-slash_11: 5635056903982713020
+      Kali-combat-sprite-slash_12: 3713071274407681501
+      Kali-combat-sprite-slash_13: -3842820634515175517
+      Kali-combat-sprite-slash_14: -5087419019968311911
+      Kali-combat-sprite-slash_15: -1843128160840374808
+      Kali-combat-sprite-slash_16: 6410302567695122217
+      Kali-combat-sprite-slash_17: 2753190749320890336
+      Kali-combat-sprite-slash_18: -4691639158626969634
+      Kali-combat-sprite-slash_19: -7602604317341530795
+      Kali-combat-sprite-slash_2: 4761453076080885422
+      Kali-combat-sprite-slash_20: -4774720723755016471
+      Kali-combat-sprite-slash_21: -2697329181634178492
+      Kali-combat-sprite-slash_22: 1434763095980293497
+      Kali-combat-sprite-slash_23: -13657097237631587
+      Kali-combat-sprite-slash_3: 6465922515883117937
+      Kali-combat-sprite-slash_4: -6157189844948650909
+      Kali-combat-sprite-slash_5: 4590557648521132299
+      Kali-combat-sprite-slash_6: 7598949485918530644
+      Kali-combat-sprite-slash_7: 7273525911834298935
+      Kali-combat-sprite-slash_8: -542933375625679406
+      Kali-combat-sprite-slash_9: 2950466273050471931
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
