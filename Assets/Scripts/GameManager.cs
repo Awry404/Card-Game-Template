@@ -454,8 +454,8 @@ public class GameManager : MonoBehaviour
                         selectedl.UpdateDI("");
                         selectede.UpdateDI("");
 
-                        
-                        
+                        if (temp1 > temp2)
+                        {
                             if (clashers[i].GetComponent<SpeedDie>().selected_card.data.dice[k].type == "blunt")
                             {
                                 clashers[i].GetComponent<SpeedDie>().librarian.spriterenderer.sprite = clashers[i].GetComponent<SpeedDie>().librarian.blunt;
@@ -476,7 +476,7 @@ public class GameManager : MonoBehaviour
                             // If the winner's die is an evade, it deals no damage and the attacker shows "Missed"
                             if (playerDie.selected_card != null && playerDie.selected_card.data.dice[k].type == "evade")
                             {
-                                selectedl.UpdateDI("Missed");
+                                selectede.UpdateDI("Missed");
                             }
                             else if (k < enemyDiceCount && enemyDie.selected_card.data.dice[k].type == "block")
                             {
@@ -566,6 +566,10 @@ public class GameManager : MonoBehaviour
                         playerDiceCount = playerDie.selected_card.data.dice.Length;
                     }
                     int maxDice = Mathf.Max(enemyDiceCount, playerDiceCount);
+                    if (playerDie.selected_card.data.oustatus == "Recover_light")
+                    {
+                        selectedl.cost += 1;
+                    }
                     for (int k = 0; k < maxDice; k++)
                     {
                         //per die on card
@@ -578,6 +582,9 @@ public class GameManager : MonoBehaviour
                         if (k < playerDiceCount && playerDie.clash_target == enemyDie)
                         {
                             temp2 = UnityEngine.Random.Range(playerDie.selected_card.data.dice[k].min, playerDie.selected_card.data.dice[k].max);
+                        }if (playerDie.selected_card.data.dice[k].status == "Recover_light")
+                        {
+                            temp2 += 1;
                         }
 
                         selectede.UpdateDI(temp1.ToString());
@@ -604,13 +611,10 @@ public class GameManager : MonoBehaviour
                             {
                                 clashers[i].GetComponent<EnemySpeedDie>().GetComponentInParent<Enemy>().spriterenderer.sprite = clashers[i].GetComponent<EnemySpeedDie>().GetComponentInParent<Enemy>().guard;
                             }
-
-                        if (temp1 > temp2)
-                        {
                             // If winner (enemy) used evade, it deals no damage and attacker shows "Missed"
                             if (enemyDie.selected_card != null && enemyDie.selected_card.data.dice[k].type == "evade")
                             {
-                                selectede.UpdateDI("Missed");
+                                selectedl.UpdateDI("Missed");
                             }
                             else if (k < playerDiceCount && playerDie.selected_card.data.dice[k].type == "block")
                             {
