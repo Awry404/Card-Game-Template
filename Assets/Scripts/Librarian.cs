@@ -29,6 +29,7 @@ public class Librarian : MonoBehaviour
     public Vector3 setlocation = new Vector3(0, 0, 0);
     public int cost = 0;
     public int maxcost = 3;
+    public string deckFileName;
     public SpriteRenderer spriterenderer;
     public Sprite normal;
     public Sprite staggered;

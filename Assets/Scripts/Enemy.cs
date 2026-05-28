@@ -28,6 +28,7 @@ public class Enemy : MonoBehaviour
     public int stagger = 10;
     public TextMeshProUGUI damageindicator;
     public Vector3 setlocation = new Vector3(0, 0, 0);
+    public string deckFileName;
     public SpriteRenderer spriterenderer;
     public Sprite normal;
     public Sprite staggered;

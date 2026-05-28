@@ -1,5 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -13,15 +16,18 @@ public class GameManager : MonoBehaviour
     public List<Card> ai_deck = new List<Card>();
     public List<Card> player_hand = new List<Card>();
     public List<Card> ai_hand = new List<Card>();
+    public List<Card> cardPrefabs = new List<Card>();
+    public string deckFolder = "Decks";
+    public bool useDeckFiles = true;
+    public List<Card> card_database = new List<Card>();
+    public List<Enemy> enemies = new List<Enemy>();
+    public List<Librarian> librarians = new List<Librarian>();
+    public List<GameObject> clashers = new List<GameObject>();
     public List<Card> discard_pile = new List<Card>();
     public int initial_hand_size = 4;
     public SpeedDie selected_die;
     public EnemySpeedDie selected_enemy_die;
     public Card selected_card;
-    public List<Card> card_database = new List<Card>();
-    public List<Enemy> enemies = new List<Enemy>();
-    public List<Librarian> librarians = new List<Librarian>();
-    public List<GameObject> clashers = new List<GameObject>();
     public Librarian selectedl;
     public Enemy selectede;
     public int turn = 0;
@@ -54,6 +60,7 @@ public class GameManager : MonoBehaviour
         turn = 0;
         //wait a frame and then start combat
         yield return new WaitForSeconds(0.1f);
+        LoadDeckFiles();
         startcombat();
         
         
@@ -78,6 +85,97 @@ public class GameManager : MonoBehaviour
         
         
         
+    }
+
+    void LoadDeckFiles()
+    {
+        if (!useDeckFiles)
+            return;
+
+        string deckPath = Path.Combine(Application.streamingAssetsPath, deckFolder);
+
+        foreach (Librarian librarian in librarians)
+        {
+            if (librarian == null)
+                continue;
+
+            string fileName = string.IsNullOrWhiteSpace(librarian.deckFileName)
+                ? librarian.gameObject.name
+                : librarian.deckFileName;
+            string playerPath = Path.Combine(deckPath, fileName + ".txt");
+            List<Card> playerDeck = LoadDeckFromFile(playerPath);
+
+            if (playerDeck != null && playerDeck.Count > 0)
+            {
+                librarian.truedeck = playerDeck;
+                Debug.Log($"Loaded deck for librarian '{librarian.gameObject.name}' from {playerPath} ({playerDeck.Count} cards)");
+            }
+            else
+            {
+                Debug.LogWarning($"Librarian deck file not loaded or empty: {playerPath}");
+            }
+        }
+
+        foreach (Enemy enemy in enemies)
+        {
+            if (enemy == null)
+                continue;
+
+            string fileName = string.IsNullOrWhiteSpace(enemy.deckFileName)
+                ? enemy.gameObject.name
+                : enemy.deckFileName;
+            string enemyPath = Path.Combine(deckPath, fileName + ".txt");
+            List<Card> enemyDeck = LoadDeckFromFile(enemyPath);
+
+            if (enemyDeck != null && enemyDeck.Count > 0)
+            {
+                enemy.truedeck = enemyDeck;
+                Debug.Log($"Loaded deck for enemy '{enemy.gameObject.name}' from {enemyPath} ({enemyDeck.Count} cards)");
+            }
+            else
+            {
+                Debug.LogWarning($"Enemy deck file not loaded or empty: {enemyPath}");
+            }
+        }
+    }
+
+    List<Card> LoadDeckFromFile(string filePath)
+    {
+        if (!File.Exists(filePath))
+        {
+            Debug.LogWarning($"Deck file not found: {filePath}");
+            return null;
+        }
+
+        string[] lines = File.ReadAllLines(filePath);
+        List<Card> loadedDeck = new List<Card>();
+
+        for (int i = 0; i < lines.Length; i++)
+        {
+            string rawLine = lines[i].Trim();
+            if (string.IsNullOrEmpty(rawLine) || rawLine.StartsWith("#"))
+                continue;
+
+            Card prefab = FindCardPrefabByName(rawLine);
+            if (prefab == null)
+            {
+                Debug.LogWarning($"Deck file line {i + 1}: card not found: '{rawLine}'. Available cards: {string.Join(", ", cardPrefabs.Where(c => c != null && c.data != null).Select(c => c.data.card_name))}");
+                continue;
+            }
+
+            loadedDeck.Add(prefab);
+        }
+
+        return loadedDeck;
+    }
+
+    Card FindCardPrefabByName(string cardName)
+    {
+        if (cardPrefabs == null)
+            return null;
+
+        return cardPrefabs.Find(prefab => prefab != null && prefab.data != null &&
+            string.Equals(prefab.data.card_name, cardName, StringComparison.OrdinalIgnoreCase));
     }
 
     // Update is called once per frame
@@ -342,12 +440,12 @@ public class GameManager : MonoBehaviour
                         int temp1 = 0;
                         if (k < playerDiceCount)
                         {
-                            temp1 = Random.Range(playerDie.selected_card.data.dice[k].min, playerDie.selected_card.data.dice[k].max);
+                            temp1 = UnityEngine.Random.Range(playerDie.selected_card.data.dice[k].min, playerDie.selected_card.data.dice[k].max);
                         }
                         int temp2 = 0;
                         if (k < enemyDiceCount && enemyDie.clash_target == playerDie)
                         {
-                            temp2 = Random.Range(enemyDie.selected_card.data.dice[k].min, enemyDie.selected_card.data.dice[k].max);
+                            temp2 = UnityEngine.Random.Range(enemyDie.selected_card.data.dice[k].min, enemyDie.selected_card.data.dice[k].max);
                         }
                         
                         selectedl.UpdateDI(temp1.ToString());
@@ -358,8 +456,6 @@ public class GameManager : MonoBehaviour
 
                         
                         
-                        if (temp1 > temp2)
-                        {
                             if (clashers[i].GetComponent<SpeedDie>().selected_card.data.dice[k].type == "blunt")
                             {
                                 clashers[i].GetComponent<SpeedDie>().librarian.spriterenderer.sprite = clashers[i].GetComponent<SpeedDie>().librarian.blunt;
@@ -377,15 +473,15 @@ public class GameManager : MonoBehaviour
                                 clashers[i].GetComponent<SpeedDie>().librarian.spriterenderer.sprite = clashers[i].GetComponent<SpeedDie>().librarian.guard;
                             }
 
-                            if (k < enemyDiceCount && enemyDie.selected_card.data.dice[k].type == "block")
+                            // If the winner's die is an evade, it deals no damage and the attacker shows "Missed"
+                            if (playerDie.selected_card != null && playerDie.selected_card.data.dice[k].type == "evade")
+                            {
+                                selectedl.UpdateDI("Missed");
+                            }
+                            else if (k < enemyDiceCount && enemyDie.selected_card.data.dice[k].type == "block")
                             {
                                 selectede.health -= temp1 - temp2;
                                 selectedl.UpdateDI((temp1 - temp2).ToString());
-                            }
-                            else if (k < enemyDiceCount && playerDie.selected_card.data.dice[k].type == "evade")
-                            {
-                                //do nothing
-                                selectedl.UpdateDI("Missed");
                             }
                             else
                             {
@@ -415,15 +511,15 @@ public class GameManager : MonoBehaviour
                                 clashers[i].GetComponent<SpeedDie>().clash_target.GetComponent<EnemySpeedDie>().GetComponentInParent<Enemy>().spriterenderer.sprite = clashers[i].GetComponent<SpeedDie>().clash_target.GetComponent<EnemySpeedDie>().GetComponentInParent<Enemy>().guard;
                             }
 
-                            if (k < playerDiceCount && playerDie.selected_card.data.dice[k].type == "block")
+                            // If the winner's die is an evade, it deals no damage and the attacker shows "Missed"
+                            if (enemyDie.selected_card != null && enemyDie.selected_card.data.dice[k].type == "evade")
+                            {
+                                selectedl.UpdateDI("Missed");
+                            }
+                            else if (k < playerDiceCount && playerDie.selected_card.data.dice[k].type == "block")
                             {
                                 selectedl.health -= temp2 - temp1;
                                 selectede.UpdateDI((temp2 - temp1).ToString());
-                            }
-                            else if (k < playerDiceCount && enemyDie.selected_card.data.dice[k].type == "evade")
-                            {
-                                //do nothing
-                                selectede.UpdateDI("Missed");
                             }
                             else
                             {
@@ -476,12 +572,12 @@ public class GameManager : MonoBehaviour
                         int temp1 = 0;
                         if (k < enemyDiceCount)
                         {
-                            temp1 = Random.Range(enemyDie.selected_card.data.dice[k].min, enemyDie.selected_card.data.dice[k].max);
+                            temp1 = UnityEngine.Random.Range(enemyDie.selected_card.data.dice[k].min, enemyDie.selected_card.data.dice[k].max);
                         }
                         int temp2 = 0;
                         if (k < playerDiceCount && playerDie.clash_target == enemyDie)
                         {
-                            temp2 = Random.Range(playerDie.selected_card.data.dice[k].min, playerDie.selected_card.data.dice[k].max);
+                            temp2 = UnityEngine.Random.Range(playerDie.selected_card.data.dice[k].min, playerDie.selected_card.data.dice[k].max);
                         }
 
                         selectede.UpdateDI(temp1.ToString());
@@ -509,15 +605,17 @@ public class GameManager : MonoBehaviour
                                 clashers[i].GetComponent<EnemySpeedDie>().GetComponentInParent<Enemy>().spriterenderer.sprite = clashers[i].GetComponent<EnemySpeedDie>().GetComponentInParent<Enemy>().guard;
                             }
 
-                            if (k < playerDiceCount && playerDie.selected_card.data.dice[k].type == "block")
+                        if (temp1 > temp2)
+                        {
+                            // If winner (enemy) used evade, it deals no damage and attacker shows "Missed"
+                            if (enemyDie.selected_card != null && enemyDie.selected_card.data.dice[k].type == "evade")
+                            {
+                                selectede.UpdateDI("Missed");
+                            }
+                            else if (k < playerDiceCount && playerDie.selected_card.data.dice[k].type == "block")
                             {
                                 selectedl.health -= temp1 - temp2;
                                 selectede.UpdateDI((temp1 - temp2).ToString());
-                            }
-                            else if (k < playerDiceCount && playerDie.selected_card.data.dice[k].type == "evade")
-                            {
-                                //do nothing
-                                selectede.UpdateDI("Missed");
                             }
                             else
                             {
@@ -547,15 +645,15 @@ public class GameManager : MonoBehaviour
                                 clashers[i].GetComponent<EnemySpeedDie>().clash_target.GetComponent<SpeedDie>().librarian.spriterenderer.sprite = clashers[i].GetComponent<EnemySpeedDie>().clash_target.GetComponent<SpeedDie>().librarian.guard;
                             }
                             
-                            if (k < enemyDiceCount && enemyDie.selected_card.data.dice[k].type == "block")
+                            // If winner (player) used evade, attacker shows "Missed" and no damage
+                            if (playerDie.selected_card != null && playerDie.selected_card.data.dice[k].type == "evade")
+                            {
+                                selectede.UpdateDI("Missed");
+                            }
+                            else if (k < enemyDiceCount && enemyDie.selected_card.data.dice[k].type == "block")
                             {
                                 selectede.health -= temp2 - temp1;
                                 selectedl.UpdateDI((temp2 - temp1).ToString());
-                            }
-                            else if (k < enemyDiceCount && enemyDie.selected_card.data.dice[k].type == "evade")
-                            {
-                                //do nothing
-                                selectedl.UpdateDI("Missed");
                             }
                             else
                             {

@@ -411,6 +411,7 @@ MonoBehaviour:
   stagger: 10
   damageindicator: {fileID: 1035028406}
   setlocation: {x: 0, y: 0, z: 0}
+  deckFileName: enemy_deck
   spriterenderer: {fileID: 0}
   normal: {fileID: 5174992157736184664, guid: 93ad00db2eade4f5e940b8c99f6ca754, type: 3}
   staggered: {fileID: -2038295672210884753, guid: 3a61b00ad02994b498ab51ded33cd008, type: 3}
@@ -505,6 +506,7 @@ MonoBehaviour:
   setlocation: {x: 0, y: 0, z: 0}
   cost: 0
   maxcost: 3
+  deckFileName: Librarian3
   spriterenderer: {fileID: 0}
   normal: {fileID: 21300000, guid: 221573b525617472eb469493135ff4d3, type: 3}
   staggered: {fileID: 21300000, guid: 66705321d422545fb8cce1760003156a, type: 3}
@@ -1166,6 +1168,7 @@ MonoBehaviour:
   setlocation: {x: 0, y: 0, z: 0}
   cost: 0
   maxcost: 3
+  deckFileName: Librarian2
   spriterenderer: {fileID: 0}
   normal: {fileID: -8398897230931411683, guid: 53ee8c4d0640c4aa6b52cc225afa4e58, type: 3}
   staggered: {fileID: 4495234459300989554, guid: bdad18cab89b14ef1be9f037f3f2efab, type: 3}
@@ -1934,6 +1937,7 @@ MonoBehaviour:
   stagger: 10
   damageindicator: {fileID: 383236564}
   setlocation: {x: 0, y: 0, z: 0}
+  deckFileName: enemy_deck
   spriterenderer: {fileID: 0}
   normal: {fileID: 5174992157736184664, guid: 93ad00db2eade4f5e940b8c99f6ca754, type: 3}
   staggered: {fileID: -2038295672210884753, guid: 3a61b00ad02994b498ab51ded33cd008, type: 3}
@@ -2084,15 +2088,25 @@ MonoBehaviour:
   ai_deck: []
   player_hand: []
   ai_hand: []
+  cardPrefabs:
+  - {fileID: 1126644538999475434, guid: 34cfa87617ca246dfa68895e247fa7fe, type: 3}
+  - {fileID: 1126644538999475434, guid: 4f04e097f7b5e479e9853fd953e91201, type: 3}
+  - {fileID: 1126644538999475434, guid: 226bfbe3db7321a4090df9999c78917a, type: 3}
+  - {fileID: 1126644538999475434, guid: 963a7ae70cb064f50a264db1757b1871, type: 3}
+  - {fileID: 1126644538999475434, guid: bb4b22418fa4541898bca44019ba96c3, type: 3}
+  - {fileID: 1126644538999475434, guid: c99f7d56e238c487591e8ea0c4214ba1, type: 3}
+  - {fileID: 1126644538999475434, guid: 270346a8e8ca042b8b9c2fec04e8ed4a, type: 3}
+  deckFolder: Decks
+  useDeckFiles: 1
+  card_database: []
+  enemies: []
+  librarians: []
+  clashers: []
   discard_pile: []
   initial_hand_size: 4
   selected_die: {fileID: 0}
   selected_enemy_die: {fileID: 0}
   selected_card: {fileID: 0}
-  card_database: []
-  enemies: []
-  librarians: []
-  clashers: []
   selectedl: {fileID: 0}
   selectede: {fileID: 0}
   turn: 0
@@ -2431,6 +2445,7 @@ MonoBehaviour:
   stagger: 10
   damageindicator: {fileID: 1198694506}
   setlocation: {x: 0, y: 0, z: 0}
+  deckFileName: enemy_deck
   spriterenderer: {fileID: 0}
   normal: {fileID: 5174992157736184664, guid: 93ad00db2eade4f5e940b8c99f6ca754, type: 3}
   staggered: {fileID: -2038295672210884753, guid: 3a61b00ad02994b498ab51ded33cd008, type: 3}
@@ -4461,6 +4476,7 @@ MonoBehaviour:
   setlocation: {x: 0, y: 0, z: 0}
   cost: 0
   maxcost: 3
+  deckFileName: Librarian1
   spriterenderer: {fileID: 0}
   normal: {fileID: 2394426063309611298, guid: 8714bbf6644664b3ab3d2e20bc309d3e, type: 3}
   staggered: {fileID: 8740470533156023855, guid: 058a781bc51314f0b86de150fb819883, type: 3}
