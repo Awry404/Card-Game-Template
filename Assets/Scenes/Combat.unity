@@ -422,6 +422,7 @@ MonoBehaviour:
   move: {fileID: 2293872317342212535, guid: d312d6566bd104e82ae46b152202ae35, type: 3}
   DIOffset: {x: 20, y: -60, z: 0}
   tint: {r: 1, g: 1, b: 1, a: 1}
+  burn: 0
 --- !u!1 &206719191
 GameObject:
   m_ObjectHideFlags: 0
@@ -1948,6 +1949,7 @@ MonoBehaviour:
   move: {fileID: 2293872317342212535, guid: d312d6566bd104e82ae46b152202ae35, type: 3}
   DIOffset: {x: 20, y: -60, z: 0}
   tint: {r: 1, g: 1, b: 1, a: 1}
+  burn: 0
 --- !u!50 &585335584
 Rigidbody2D:
   serializedVersion: 5
@@ -2096,6 +2098,8 @@ MonoBehaviour:
   - {fileID: 1126644538999475434, guid: bb4b22418fa4541898bca44019ba96c3, type: 3}
   - {fileID: 1126644538999475434, guid: c99f7d56e238c487591e8ea0c4214ba1, type: 3}
   - {fileID: 1126644538999475434, guid: 270346a8e8ca042b8b9c2fec04e8ed4a, type: 3}
+  - {fileID: 1126644538999475434, guid: 1b5c7706e23a647edbcf4b25839ddad3, type: 3}
+  - {fileID: 1126644538999475434, guid: 611bb863708a042d49cf04cd8e5c278a, type: 3}
   deckFolder: Decks
   useDeckFiles: 1
   card_database: []
@@ -2456,6 +2460,7 @@ MonoBehaviour:
   move: {fileID: 2293872317342212535, guid: d312d6566bd104e82ae46b152202ae35, type: 3}
   DIOffset: {x: 20, y: -60, z: 0}
   tint: {r: 1, g: 1, b: 1, a: 1}
+  burn: 0
 --- !u!50 &949023310
 Rigidbody2D:
   serializedVersion: 5

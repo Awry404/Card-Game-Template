@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c025b4487bfbb41fca186c7d9d6e18a5, type: 3}
+  m_Name: Flaming_Bat_data
+  m_EditorClassIdentifier: 
+  card_name: Flaming Bat
+  cost: 4
+  oustatus: burn
+  ouamount: 2
+  dice:
+  - {fileID: 11400000, guid: 5d8601873060944179290e20f400c415, type: 2}
+  - {fileID: 11400000, guid: 3db618b28181d427fa1186229e436873, type: 2}
+  - {fileID: 11400000, guid: 3db618b28181d427fa1186229e436873, type: 2}
+  sprite: {fileID: -4059262427160971765, guid: 9cf4819e771dc4c3f8c34f7ab8490c2e, type: 3}

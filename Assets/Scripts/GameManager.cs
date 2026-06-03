@@ -434,6 +434,14 @@ public class GameManager : MonoBehaviour
                     int playerDiceCount = playerDie.selected_card.data.dice.Length;
                     int enemyDiceCount = enemyDie.selected_card.data.dice.Length;
                     int maxDice = Mathf.Max(playerDiceCount, enemyDiceCount);
+                    if (playerDie.selected_card.data.oustatus == "Recover_light")
+                    {
+                        selectedl.cost += 1;
+                    }
+                    else if (playerDie.selected_card.data.oustatus == "burn")
+                    {
+                        selectede.burn += 1;
+                    }
                     for  (int k = 0; k < maxDice; k++)
                     {
                         //per die on card
@@ -487,6 +495,16 @@ public class GameManager : MonoBehaviour
                             {
                                 selectede.health -= temp1;
                                 selectedl.UpdateDI(temp1.ToString());
+                            }
+
+                            Die_data winningDie = playerDie.selected_card.data.dice[k];
+                            if (winningDie.status == "Recover_light")
+                            {
+                                selectedl.cost += winningDie.samount;
+                            }
+                            else if (winningDie.status == "burn")
+                            {
+                                selectede.burn += winningDie.samount;
                             }
 
                             yield return StartCoroutine(Knockback(selectede.transform, playerDie.transform.position, clashKnockbackDistance, temp1));
@@ -566,10 +584,7 @@ public class GameManager : MonoBehaviour
                         playerDiceCount = playerDie.selected_card.data.dice.Length;
                     }
                     int maxDice = Mathf.Max(enemyDiceCount, playerDiceCount);
-                    if (playerDie.selected_card.data.oustatus == "Recover_light")
-                    {
-                        selectedl.cost += 1;
-                    }
+                    
                     for (int k = 0; k < maxDice; k++)
                     {
                         //per die on card
@@ -582,10 +597,8 @@ public class GameManager : MonoBehaviour
                         if (k < playerDiceCount && playerDie.clash_target == enemyDie)
                         {
                             temp2 = UnityEngine.Random.Range(playerDie.selected_card.data.dice[k].min, playerDie.selected_card.data.dice[k].max);
-                        }if (playerDie.selected_card.data.dice[k].status == "Recover_light")
-                        {
-                            temp2 += 1;
                         }
+                        
 
                         selectede.UpdateDI(temp1.ToString());
                         selectedl.UpdateDI(temp2.ToString());
@@ -663,6 +676,16 @@ public class GameManager : MonoBehaviour
                             {
                                 selectede.health -= temp2;
                                 selectedl.UpdateDI(temp2.ToString());
+                            }
+
+                            Die_data winningDie = playerDie.selected_card.data.dice[k];
+                            if (winningDie.status == "Recover_light")
+                            {
+                                selectedl.cost += winningDie.samount;
+                            }
+                            else if (winningDie.status == "burn")
+                            {
+                                selectede.burn += winningDie.samount;
                             }
 
                             yield return StartCoroutine(Knockback(selectede.transform, playerDie.transform.position, clashKnockbackDistance));

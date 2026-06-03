@@ -39,6 +39,7 @@ public class Enemy : MonoBehaviour
     public Sprite move;
     public Vector3 DIOffset = new Vector3(10, -50f, 0);
     public Color tint = new Color(1f, 1f, 1f, 1f);
+    public int burn = 0;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -116,6 +117,11 @@ public class Enemy : MonoBehaviour
         spriterenderer.sprite = normal;
         spriterenderer.color = tint;
         transform.localScale = new Vector3(20, 20, 20);
+        if (burn > 0)
+        {
+            health -= burn;
+            burn -= 1;
+        }
         if (health <= 0)
         {
             Destroy(gameObject);

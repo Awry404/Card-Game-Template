@@ -497,7 +497,7 @@ GameObject:
   - component: {fileID: 1126644538999475434}
   - component: {fileID: -2245179390171894727}
   m_Layer: 0
-  m_Name: Great Split Vertical
+  m_Name: Burning Sword 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -536,9 +536,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fa534983bed543169ce438dfad802a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: a68de41e73bbe4e2c86d4c089e68937e, type: 2}
+  data: {fileID: 11400000, guid: b9b096d4ff3b042af80cd9671b32c97a, type: 2}
   card_name: 
-  cost: 5
+  cost: 0
   oustatus: none
   ouamount: 0
   dice: {fileID: 0}
@@ -551,7 +551,7 @@ MonoBehaviour:
   diceTextString: 
   spriteImage: {fileID: 4777937877724538930}
   BackgroundImage: {fileID: 0}
-  Rarity: {r: 0.90588236, g: 0.49411765, b: 0.007843138, a: 1}
+  Rarity: {r: 0.15686275, g: 0.5568628, b: 0.54901963, a: 1}
   parent: {fileID: 0}
   enemy_parent: {fileID: 0}
   locationinhand: 0

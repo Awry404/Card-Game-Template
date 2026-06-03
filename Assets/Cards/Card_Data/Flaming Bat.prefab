@@ -497,7 +497,7 @@ GameObject:
   - component: {fileID: 1126644538999475434}
   - component: {fileID: -2245179390171894727}
   m_Layer: 0
-  m_Name: Great Split Vertical
+  m_Name: Flaming Bat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -536,9 +536,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fa534983bed543169ce438dfad802a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: a68de41e73bbe4e2c86d4c089e68937e, type: 2}
+  data: {fileID: 11400000, guid: 3ecace58cd7244dd2b041312aea394ce, type: 2}
   card_name: 
-  cost: 5
+  cost: 0
   oustatus: none
   ouamount: 0
   dice: {fileID: 0}
